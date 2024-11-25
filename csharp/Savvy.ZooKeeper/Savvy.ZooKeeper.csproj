@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Syncfusion.Blazor.Navigations" Version="27.2.3" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="27.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Savvy.ServiceDefaults\Savvy.ServiceDefaults.csproj" />
   </ItemGroup>
 

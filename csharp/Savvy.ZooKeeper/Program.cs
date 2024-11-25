@@ -1,4 +1,6 @@
 using Savvy.ZooKeeper.Components;
+using Savvy.ZooKeeper.Components.Pages;
+using Syncfusion.Blazor;
 
 namespace Savvy.ZooKeeper;
 
@@ -12,6 +14,10 @@ public class Program
         // Add services to the container.
         builder.Services.AddRazorComponents()
             .AddInteractiveServerComponents();
+
+        builder.Services.AddSyncfusionBlazor();
+
+        Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzU5NTc0MUAzMjM3MmUzMDJlMzBPc1VJV2ZxNDJPNndTRDkvc0ZGQUhORUVHZk1wU0x4NXlleWV0QlNsejlBPQ==");
 
         var app = builder.Build();
 
@@ -30,6 +36,7 @@ public class Program
         app.UseAntiforgery();
 
         app.MapStaticAssets();
+        
         app.MapRazorComponents<App>()
             .AddInteractiveServerRenderMode();
 
