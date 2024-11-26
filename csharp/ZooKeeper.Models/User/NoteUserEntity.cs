@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 [PrimaryKey(nameof(NoteId), nameof(UserEntityId))]
-[Table("Note_Entity", Schema = Constants.UserEntitySchema)]
+[Table("Note_Entity", Schema = Constants.DataSchema)]
 public class NoteUserEntity
 {
     [ForeignKey(nameof(Note))]

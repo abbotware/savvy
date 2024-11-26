@@ -8,16 +8,23 @@ using Savvy.ZooKeeper.Models.Metadata;
 public static class SeedDatabase
 {
     public record class HabitatRow(string Name, string Description);
-    public record class AnimalTypeRow(string Habitat, string Name, string Kingdom, string Phylum, string Class, string Order, string Family, string Genus, string Species, string Diet);
+    public record class AnimalTypeRow(string Habitat, string Name, string Kingdom, string Phylum, string Class, string Order, string Family, string Genus, string Species, string Diet, string Description, string FeedingTimes);
 
     public static async Task Seed(ModelContext modelContext, DirectoryInfo root, CancellationToken ct)
     {
+
+        var system = new Principal { Name = "system"};
+        var saved  = modelContext.Principals.Add(system);
+        modelContext.SaveChanges();
+
         var fi = new FileInfo(Path.Combine(root.FullName, "Habitat.csv"));
 
         await LoadTable<Habitat, HabitatRow>(modelContext, fi, (m, r) =>
         {
             m.Name = r.Name;
             m.Description = r.Description;
+            m.CreatedById = saved.Entity.Id;
+            m.UpdatedById = saved.Entity.Id;
         });
 
         fi = new FileInfo(Path.Combine(root.FullName, "AnimalType.csv"));
@@ -38,6 +45,10 @@ public static class SeedDatabase
             m.Genus = r.Genus;
             m.Species = r.Species;
             m.Diet = r.Diet;
+            m.Description = r.Description;
+            m.FeedingTimes = r.FeedingTimes;
+            m.CreatedById = saved.Entity.Id;
+            m.UpdatedById = saved.Entity.Id;
         });
 
 

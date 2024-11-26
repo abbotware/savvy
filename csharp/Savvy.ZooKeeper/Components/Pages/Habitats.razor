@@ -1,4 +1,5 @@
 ﻿@page "/habitats"
+@inherits BaseGrid<Habitat>
 @rendermode InteractiveServer
 
 <SfGrid DataSource="@Rows" AllowPaging="true" Toolbar="@(new string[] {"Add", "Edit" ,"Delete","Update","Cancel" })">

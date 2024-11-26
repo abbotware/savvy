@@ -2,17 +2,27 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Savvy.ZooKeeper.Models;
 
-[Table(nameof(AnimalType), Schema = "Metadata")]
-public class AnimalType : SystemEntity
+[Table(nameof(AnimalType), Schema = Constants.MetadataSchema)]
+[Index(nameof(Name), IsUnique = true)]
+[Index(nameof(Species), IsUnique = true)]
+[Index(nameof(Kingdom), nameof(Phylum), nameof(Class), nameof(Order), nameof(Family), nameof(Genus), nameof(Species), IsUnique = true)]
+public class AnimalType : UpdatableEntity
 {
-    //public HierarchyId Taxonomy { get; set; } = null!;
+    [DataType(DataType.MultilineText)]
     public string Diet { get; set; } = null!;
-    
-    [Required]
+
+    [DataType(DataType.MultilineText)]
+    public string Description { get; set; } = null!;
+
+    [DataType(DataType.MultilineText)]
+    public string FeedingTimes { get; set; } = null!;
+
     [DeleteBehavior(DeleteBehavior.NoAction)]
+    [JsonIgnore]
     public Habitat Habitat { get; set; } = null!;
 
     [ForeignKey(nameof(Habitat))]

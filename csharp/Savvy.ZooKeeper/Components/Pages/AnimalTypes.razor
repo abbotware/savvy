@@ -1,0 +1,41 @@
+﻿@page "/species"
+@inherits BaseGrid<AnimalType>
+
+@rendermode InteractiveServer
+
+<SfGrid DataSource="@Rows" AllowPaging="true" AllowFiltering="true" AllowGrouping="true" AllowMultiSorting="true" Toolbar="@(new string[] {"Add", "Edit" ,"Delete","Update","Cancel" })">
+    <GridPageSettings PageSize="100"></GridPageSettings>
+    <GridGroupSettings></GridGroupSettings>
+    <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
+    <GridEvents OnActionBegin="OnGridActionBegin" TValue="AnimalType"></GridEvents>
+    <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="@EditMode.Dialog" Dialog="DialogParams">
+        <Template>
+            @{
+                var row = (AnimalType)context;
+            }
+
+            <SfDataForm ID="GridForm" Model="@row" OnValidSubmit="OnFormValidSubmit">
+                <FormButtons ></FormButtons>
+                <FormValidator>
+                    <DataAnnotationsValidator></DataAnnotationsValidator>
+                </FormValidator>
+                <FormItems>
+                    <FormAutoGenerateItems></FormAutoGenerateItems>
+                </FormItems>
+            </SfDataForm>
+
+        </Template>
+    </GridEditSettings>
+
+    <GridColumns>
+        <GridColumn Field=@nameof(AnimalType.Name) HeaderText="Name" ValidationRules="@(new ValidationRules{ Required=true})" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(AnimalType.Kingdom) Width="150" MinWidth="75"></GridColumn>
+        <GridColumn Field=@nameof(AnimalType.Phylum) Width="150" MinWidth="75"></GridColumn>
+        <GridColumn Field=@nameof(AnimalType.Class) Width="150" MinWidth="75"></GridColumn>
+        <GridColumn Field=@nameof(AnimalType.Order) Width="150" MinWidth="75"></GridColumn>
+        <GridColumn Field=@nameof(AnimalType.Genus) Width="150" MinWidth="75"></GridColumn>
+        <GridColumn Field=@nameof(AnimalType.Species) Width="150" MinWidth="75"></GridColumn>
+    </GridColumns>
+</SfGrid>
+
+

@@ -2,6 +2,8 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
 
 [Table(nameof(Employee))]
 public class Employee : UserEntity
@@ -22,4 +24,11 @@ public class Employee : UserEntity
 
     [StringLength(25)]
     public string Phone { get; set; } = null!;
+
+    [DeleteBehavior(DeleteBehavior.NoAction)]
+    [JsonIgnore]
+    public Principal Principal { get; set; } = null!;
+
+    [ForeignKey(nameof(Principal))]
+    public long PrincipalId { get; set; }
 }

@@ -3,7 +3,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-[Table(nameof(Note), Schema = Constants.UserEntitySchema)]
+[Table(nameof(Note), Schema = Constants.DataSchema)]
 public class Note : UserEntity
 {
     public Note()

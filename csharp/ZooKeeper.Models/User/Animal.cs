@@ -1,17 +1,17 @@
 ﻿namespace Savvy.ZooKeeper.Models;
 
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Savvy.ZooKeeper.Models.Metadata;
 
-[Table(nameof(Animal), Schema = Constants.UserEntitySchema)]
+
+[Table(nameof(Animal), Schema = Constants.DataSchema)]
 public class Animal : UserEntity
 {
     public Animal()
     {
         EntityType = UserEntityType.Animal;
     }
-
-    public AnimalStatus Status { get; set; } = AnimalStatus.Unknown;
 
     public AnimalType AnimalType { get; set; } = null!;
 
@@ -25,5 +25,11 @@ public class Animal : UserEntity
     [ForeignKey(nameof(Habitat))]
     public long? CurrentHabitatId { get; set; }
 
+    public AnimalState? CurrentState { get; set; }
+
+    [ForeignKey(nameof(AnimalState))]
+    public long? AnimalStateId { get; set; }
+
+    [DataType(DataType.MultilineText)]
     public string? Diet { get; set; } = null!;
 }
