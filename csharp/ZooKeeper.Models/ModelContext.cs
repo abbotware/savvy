@@ -9,11 +9,14 @@ public class ModelContext(DbContextOptions<ModelContext> options)
     : DbContext(options)
 {
     public DbSet<AnimalType> AnimalTypes => Set<AnimalType>();
-    public DbSet<Animal> Animals => Set<Animal>();
-    public DbSet<Note> Notes => Set<Note>();
-    public DbSet<Employee> Employees => Set<Employee>();
-    public DbSet<Habitat> Habitats => Set<Habitat>();
+    public DbSet<Habitat> HabitatTypes => Set<Habitat>();
 
+    public DbSet<Animal> Animals => Set<Animal>();
+    public DbSet<Exhibit> Exhibits => Set<Exhibit>();
+
+    public DbSet<Note> Notes => Set<Note>();
+
+    public DbSet<Employee> Employees => Set<Employee>();
 
     public DbSet<Principal> Principals => Set<Principal>();
 

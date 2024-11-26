@@ -16,17 +16,14 @@ public class AnimalType : UpdatableEntity
     public string Diet { get; set; } = null!;
 
     [DataType(DataType.MultilineText)]
-    public string Description { get; set; } = null!;
-
-    [DataType(DataType.MultilineText)]
     public string FeedingTimes { get; set; } = null!;
 
     [DeleteBehavior(DeleteBehavior.NoAction)]
     [JsonIgnore]
-    public Habitat Habitat { get; set; } = null!;
+    public Habitat HabitatType { get; set; } = null!;
 
-    [ForeignKey(nameof(Habitat))]
-    public long HabitatId { get; set; }
+    [ForeignKey(nameof(HabitatType))]
+    public long HabitatTypeId { get; set; }
 
     public string? Kingdom { get; set; }
 

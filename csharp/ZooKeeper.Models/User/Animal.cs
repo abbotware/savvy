@@ -20,10 +20,10 @@ public class Animal : UserEntity
 
     public DateTimeOffset EnteredCaptivitiy { get; set; }
 
-    public Habitat? CurrentHabitat { get; set; }
+    public Exhibit? CurrentExhibit { get; set; }
 
-    [ForeignKey(nameof(Habitat))]
-    public long? CurrentHabitatId { get; set; }
+    [ForeignKey(nameof(Exhibit))]
+    public long? ExhibitId { get; set; }
 
     public AnimalState? CurrentState { get; set; }
 

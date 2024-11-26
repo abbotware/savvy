@@ -3,7 +3,7 @@
 public enum UserEntityType
 {
     Animal,
-    Habitat,
+    Exhibit,
     Note,
     Employee,
 }

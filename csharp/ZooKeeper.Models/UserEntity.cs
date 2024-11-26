@@ -15,11 +15,6 @@ public abstract class UserEntity : UpdatableEntity
     [JsonIgnore]
     public virtual UserEntityType EntityType { get; set; }
 
-    [StringLength(1000)]
-    [Display(Order = 50, Description = "Description", ShortName = "Description", Prompt = "Description (optional)")]
-    [DataType(DataType.MultilineText)]
-    public string? Description { get; set; }
-
     [DeleteBehavior(DeleteBehavior.NoAction)]
     [Display(AutoGenerateField = false)]
     [JsonIgnore]

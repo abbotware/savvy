@@ -13,6 +13,11 @@ public abstract class UpdatableEntity : NamedEntity
         Updated = Created;
     }
 
+    [StringLength(1000)]
+    [Display(Order = 50, Description = "Description", ShortName = "Description", Prompt = "Description (optional)")]
+    [DataType(DataType.MultilineText)]
+    public string? Description { get; set; }
+
     [ReadOnly(true)]
     [Display(AutoGenerateField = false)]
     public DateTimeOffset Updated { get; set; }

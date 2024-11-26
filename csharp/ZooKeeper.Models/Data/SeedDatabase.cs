@@ -29,14 +29,14 @@ public static class SeedDatabase
 
         fi = new FileInfo(Path.Combine(root.FullName, "AnimalType.csv"));
 
-        var habs = modelContext.Habitats.ToDictionary(x => x.Name, x => x, StringComparer.InvariantCultureIgnoreCase);
+        var habs = modelContext.HabitatTypes.ToDictionary(x => x.Name, x => x, StringComparer.InvariantCultureIgnoreCase);
 
         await LoadTable<AnimalType, AnimalTypeRow>(modelContext, fi, (m, r) =>
         {
             var h = habs[r.Habitat];
 
             m.Name = r.Name;
-            m.Habitat = h;
+            m.HabitatType = h;
             m.Kingdom = r.Kingdom;
             m.Phylum = r.Phylum;
             m.Class = r.Class;

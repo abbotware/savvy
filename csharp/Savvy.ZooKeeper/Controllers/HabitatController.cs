@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Savvy.ZooKeeper.Models;
+using Savvy.ZooKeeper.Models.Metadata;
 
 namespace Savvy.ZooKeeper.Controllers
 {
     [ApiController]
-    [Route("habitat")]
+    [Route("metadata/habitat")]
     public class HabitatController : ControllerBase
     {
         private readonly ModelContext database;
@@ -19,7 +20,7 @@ namespace Savvy.ZooKeeper.Controllers
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public ActionResult<IEnumerable<Habitat>> Get()
         {
-            return Ok(database.Habitats);
+            return Ok(database.HabitatTypes);
         }
 
         // GET api/values/5
@@ -29,7 +30,7 @@ namespace Savvy.ZooKeeper.Controllers
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public ActionResult<Habitat> Get(int id)
         {
-            return Ok(database.Habitats.SingleOrDefault(x => x.Id == id));
+            return Ok(database.HabitatTypes.SingleOrDefault(x => x.Id == id));
         }
 
         // POST api/values
@@ -38,7 +39,7 @@ namespace Savvy.ZooKeeper.Controllers
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public ActionResult<Habitat> Post(string name, string? desciription)
         {
-            var result = database.Habitats.Add(new Habitat { Name = name, Description = desciription });
+            var result = database.HabitatTypes.Add(new Habitat { Name = name, Description = desciription });
             database.SaveChanges();
             return Created("get", result.Entity);
         }
@@ -55,11 +56,11 @@ namespace Savvy.ZooKeeper.Controllers
         {
         }
 
-        [HttpGet("{id}/animals")]
-        [ProducesResponseType(typeof(List<Animal>), StatusCodes.Status200OK)]
-        public ActionResult<IEnumerable<Animal>> Animals(int id) 
+        [HttpGet("{id}/animaltypes")]
+        [ProducesResponseType(typeof(List<AnimalType>), StatusCodes.Status200OK)]
+        public ActionResult<IEnumerable<AnimalType>> AnimalTypes(int id) 
         {
-            var animals = database.Habitats.SingleOrDefault(x => x.Id == id)?.Animals ?? Array.Empty<Animal>();
+            var animals = database.HabitatTypes.SingleOrDefault(x => x.Id == id)?.AnimalTypes ?? Array.Empty<AnimalType>();
 
             return Ok(animals);
         }
