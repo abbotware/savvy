@@ -2,14 +2,11 @@
 
 using System;
 using Microsoft.EntityFrameworkCore;
+using Savvy.ZooKeeper.Models.Metadata;
 
-public class ModelContext : DbContext
+public class ModelContext(DbContextOptions<ModelContext> options) 
+    : DbContext(options)
 {
-    public ModelContext(DbContextOptions<ModelContext> options)
-        : base(options)
-    {
-    }
-
     public DbSet<AnimalType> AnimalTypes => Set<AnimalType>();
     public DbSet<Animal> Animals => Set<Animal>();
     public DbSet<Note> Notes => Set<Note>();

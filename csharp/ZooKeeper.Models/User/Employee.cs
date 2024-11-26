@@ -6,6 +6,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 [Table(nameof(Employee))]
 public class Employee : UserEntity
 {
+    public Employee()
+    {
+        EntityType = UserEntityType.Employee;
+    }
+
     [StringLength(100)]
     public string FirstName { get; set; } = null!;
 

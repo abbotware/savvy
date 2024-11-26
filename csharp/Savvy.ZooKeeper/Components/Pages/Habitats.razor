@@ -1,0 +1,31 @@
+﻿@page "/habitats"
+@rendermode InteractiveServer
+
+<SfGrid DataSource="@Rows" AllowPaging="true" Toolbar="@(new string[] {"Add", "Edit" ,"Delete","Update","Cancel" })">
+    <GridEvents OnActionBegin="OnGridActionBegin" TValue="Habitat"></GridEvents>
+    <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="@EditMode.Dialog" Dialog="DialogParams">
+        <Template>
+            @{
+                var row = (Habitat)context;
+            }
+
+            <SfDataForm ID="GridForm" Model="@row" OnValidSubmit="OnFormValidSubmit">
+                <FormButtons ></FormButtons>
+                <FormValidator>
+                    <DataAnnotationsValidator></DataAnnotationsValidator>
+                </FormValidator>
+                <FormItems>
+                    <FormAutoGenerateItems></FormAutoGenerateItems>
+                </FormItems>
+            </SfDataForm>
+
+        </Template>
+    </GridEditSettings>
+
+    <GridColumns>
+        <GridColumn Field=@nameof(Habitat.Id) HeaderText="Id" IsPrimaryKey="true" ValidationRules="@(new ValidationRules{ Required=true, Number=true})" TextAlign="@TextAlign.Center" HeaderTextAlign="@TextAlign.Center" Width="140"></GridColumn>
+        <GridColumn Field=@nameof(Habitat.Name) HeaderText="Name" ValidationRules="@(new ValidationRules{ Required=true})" Width="150"></GridColumn>
+    </GridColumns>
+</SfGrid>
+
+

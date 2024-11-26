@@ -1,11 +1,10 @@
 ﻿namespace Savvy.ZooKeeper.Models;
 
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Reflection.Metadata;
 using Microsoft.EntityFrameworkCore;
 
 [PrimaryKey(nameof(NoteId), nameof(UserEntityId))]
+[Table("Note_Entity", Schema = Constants.UserEntitySchema)]
 public class NoteUserEntity
 {
     [ForeignKey(nameof(Note))]
@@ -15,9 +14,8 @@ public class NoteUserEntity
     public long UserEntityId { get; set; }
 
     [DeleteBehavior(DeleteBehavior.NoAction)]
-    public Note Note { get; set; }
+    public Note Note { get; set; } = null!;
 
     [DeleteBehavior(DeleteBehavior.NoAction)]
-    public UserEntity UserEntity { get; set; }
-
+    public UserEntity UserEntity { get; set; } = null!;
 }

@@ -1,9 +1,16 @@
 ﻿namespace Savvy.ZooKeeper.Models;
 
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-[Table(nameof(Habitat))]
+[Table(nameof(Habitat), Schema = Constants.UserEntitySchema)]
 public class Habitat : UserEntity
 {
-    public ICollection<Animal> Animals { get; } = new List<Animal>();
+    public Habitat()
+    {
+        EntityType = UserEntityType.Habitat;
+    }
+
+    [Display(AutoGenerateField = false)]
+    public ICollection<Animal> Animals { get; } = [];
 }
