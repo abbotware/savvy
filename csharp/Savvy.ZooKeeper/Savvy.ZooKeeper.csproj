@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Savvy.ServiceDefaults\Savvy.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\ZooKeeper.Models\ZooKeeper.Models.csproj" />
   </ItemGroup>
 
 </Project>

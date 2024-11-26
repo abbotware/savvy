@@ -1,7 +1,8 @@
 ﻿namespace Savvy.ZooKeeper.Models;
 
 using System.ComponentModel.DataAnnotations;
-public class SystemEntity
+
+public abstract class SystemEntity
 {
     public SystemEntity()
     {
@@ -12,14 +13,10 @@ public class SystemEntity
     [Key]
     public long Id { get; set; }
 
+    [StringLength(100)]
     public string Name { get; set; } = null!;
-
-    public string? Description { get; set; }
 
     public DateTimeOffset Created { get; set; }
 
     public DateTimeOffset Updated { get; set; }
-
-    [Timestamp]
-    public long Version { get; set; }
 }

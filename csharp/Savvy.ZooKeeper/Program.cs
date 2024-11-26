@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using Savvy.ZooKeeper.Components;
 using Savvy.ZooKeeper.Components.Pages;
+using Savvy.ZooKeeper.Models;
 using Syncfusion.Blazor;
 
 namespace Savvy.ZooKeeper;
@@ -14,6 +16,9 @@ public class Program
         // Add services to the container.
         builder.Services.AddRazorComponents()
             .AddInteractiveServerComponents();
+
+        builder.Services.AddDbContext<ModelContext>(options =>
+        options.UseSqlServer("name=Database"));
 
         builder.Services.AddSyncfusionBlazor();
 

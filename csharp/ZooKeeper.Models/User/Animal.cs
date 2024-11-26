@@ -1,14 +1,23 @@
 ﻿namespace Savvy.ZooKeeper.Models;
 
+using System.ComponentModel.DataAnnotations.Schema;
+
+[Table(nameof(Animal))]
 public class Animal : UserEntity
 {
     public AnimalStatus Status { get; set; } = AnimalStatus.Unknown;
 
-    public AnimalType Type { get; set; } = null!;
+    public AnimalType AnimalType { get; set; } = null!;
 
-    public DateTimeOffset Captivitiy { get; set; }
+    [ForeignKey(nameof(AnimalType))]
+    public long AnimalTypeId { get; set; }
 
-    public Habitat CurrentHabitat { get; set; } = null!;
+    public DateTimeOffset EnteredCaptivitiy { get; set; }
+
+    public Habitat? CurrentHabitat { get; set; }
+
+    [ForeignKey(nameof(Habitat))]
+    public long? CurrentHabitatId { get; set; }
 
     public string? Diet { get; set; } = null!;
 }
