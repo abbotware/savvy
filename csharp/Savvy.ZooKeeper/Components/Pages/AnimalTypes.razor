@@ -1,4 +1,6 @@
-﻿@page "/species"
+﻿@page "/animal-types"
+@page "/animaltypes"
+
 @inherits BaseGrid<AnimalType>
 
 @rendermode InteractiveServer
@@ -35,6 +37,8 @@
         <GridColumn Field=@nameof(AnimalType.Order) Width="150" MinWidth="75"></GridColumn>
         <GridColumn Field=@nameof(AnimalType.Genus) Width="150" MinWidth="75"></GridColumn>
         <GridColumn Field=@nameof(AnimalType.Species) Width="150" MinWidth="75"></GridColumn>
+        <GridColumn Field=@nameof(AnimalType.Diet) Width="150" MinWidth="75"></GridColumn>
+        <GridColumn Field=@nameof(AnimalType.FeedingTimes) Width="150" MinWidth="75"></GridColumn>
     </GridColumns>
 </SfGrid>
 

@@ -1,5 +1,6 @@
 ﻿namespace Savvy.ZooKeeper.Models.Entities;
 
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Savvy.ZooKeeper.Models.Metadata;
@@ -11,11 +12,14 @@ public class Exhibit : Entity
     {
         EntityType = EntityType.Exhibit;
     }
-    public Habitat? Habitat { get; set; }
+    
+    [Display(AutoGenerateField = false)]
+    public Habitat Habitat { get; set; } = null!;
 
     [ForeignKey(nameof(Habitat))]
-    public long? HabitatId { get; set; }
+    public long HabitatId { get; set; }
 
     [DeleteBehavior(DeleteBehavior.NoAction)]
+    [Display(AutoGenerateField = false)]
     public ICollection<Animal> Animals { get; } = [];
 }

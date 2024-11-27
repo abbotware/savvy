@@ -30,6 +30,7 @@ public abstract class UpdatableRecord : NamedRecord
     [ReadOnly(true)]
     [JsonIgnore]
     [DeleteBehavior(DeleteBehavior.NoAction)]
+    [Display(AutoGenerateField = false)]
     public Principal UpdatedBy { get; set; } = null!;
 
     [Timestamp]

@@ -20,9 +20,13 @@ namespace Savvy.ZooKeeper.Components.Pages
 
         protected Syncfusion.Blazor.Grids.Action? LastAction;
 
+        protected virtual IQueryable<T> OnQuery(ModelContext context) => context.Set<T>().AsQueryable();
+
         protected override Task OnInitializedAsync()
         {
-            foreach (var h in Database.Set<T>().ToList())
+            var query = OnQuery(this.Database);
+
+            foreach (var h in query.ToList())
             {
                 Rows.Add(h);
             }

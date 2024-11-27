@@ -1,26 +1,27 @@
-Cute Name,Animal Name
-Sammy,Fennec Fox
-Penny,Lion
-Tommy,Raccoon
-Fiona,Emperor Penguin
-Benny,Polar Bear
-Molly,Red Fox
-Coco,Alligator
-Danny,Alligator
-Ricky,Rabbit
-Lucy,Dolphin
-Ellie,Dolphin
-Ginger,African Elephant
-Bobby,Jaguar
-Freddy,Alligator
-Sunny,Polar Bear
-Lilly,Emperor Penguin
-Max,Camel
-Rosie,African Elephant
-Wendy,Toucan
-Charlie,African Elephant
-Leo,Frog
-Mickey,Lion
-Ruby,Prairie Dog
-Nina,Whale
-Toby,Raccoon
+Name,AnimalType,Status,Diet,Age
+Sammy,Fennec Fox,Healthy,,5.0
+Penny,Lion,Healthy,,7.0
+Simba,Lion,Healthy,"{""type"": ""Carnivore"", ""foods"": [""sushi""]}",3.0
+Tommy,Raccoon,Healthy,,2.5
+Fiona,Emperor Penguin,Healthy,,10.0
+Benny,Polar Bear,Healthy,,12.5
+Molly,Red Fox,Healthy,,2.5
+Coco,Alligator,Healthy,,35.0
+Danny,Alligator,Injured,,35.0
+Ricky,Kangaroo Rat,Healthy,,1.5
+Lucy,Dolphin,Sick,,20.0
+Ellie,Dolphin,Healthy,,20.0
+Ginger,African Elephant,Sick,,35.0
+Bobby,Jaguar,Healthy,,7.5
+Freddy,Alligator,Healthy,,35.0
+Sunny,Polar Bear,Healthy,,12.5
+Lilly,Emperor Penguin,Healthy,,10.0
+Max,Camel,Healthy,,25.0
+Rosie,African Elephant,Healthy,,35.0
+Wendy,Toucan,Healthy,,9.0
+Charlie,African Elephant,Healthy,,35.0
+Leo,Tree Frog,Healthy,,4.0
+Mickey,Lion,Healthy,,7.0
+Ruby,Black-tailed Prairie Dog,Healthy,,2.5
+Nina,Blue Whale,Healthy,,45.0
+Toby,Raccoon,Healthy,,2.5

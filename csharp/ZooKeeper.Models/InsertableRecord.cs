@@ -25,5 +25,6 @@ public abstract class InsertableRecord
 
     [JsonIgnore]
     [DeleteBehavior(DeleteBehavior.NoAction)]
+    [Display(AutoGenerateField = false)]
     public Principal CreatedBy { get; set; } = null!;
 }

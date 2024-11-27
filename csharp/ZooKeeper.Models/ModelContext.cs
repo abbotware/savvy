@@ -9,7 +9,7 @@ public class ModelContext(DbContextOptions<ModelContext> options)
 {
     public DbSet<AnimalType> AnimalTypes => Set<AnimalType>();
 
-    public DbSet<Habitat> HabitatTypes => Set<Habitat>();
+    public DbSet<Habitat> Habitats => Set<Habitat>();
 
     public DbSet<Animal> Animals => Set<Animal>();
 

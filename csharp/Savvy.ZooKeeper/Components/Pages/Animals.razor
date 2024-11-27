@@ -1,13 +1,13 @@
-﻿@page "/habitats"
-@inherits BaseGrid<Habitat>
+﻿@page "/animals"
+@inherits BaseGrid<Animal>
 @rendermode InteractiveServer
 
 <SfGrid DataSource="@Rows" AllowPaging="true" Toolbar="@(new string[] {"Add", "Edit" ,"Delete","Update","Cancel" })">
-    <GridEvents OnActionBegin="OnGridActionBegin" TValue="Habitat"></GridEvents>
+    <GridEvents OnActionBegin="OnGridActionBegin" TValue="Animal"></GridEvents>
     <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="@EditMode.Dialog" Dialog="DialogParams">
         <Template>
             @{
-                var row = (Habitat)context;
+                var row = (Animal)context;
             }
 
             <SfDataForm ID="GridForm" Model="@row" OnValidSubmit="OnFormValidSubmit">
@@ -24,8 +24,11 @@
     </GridEditSettings>
 
     <GridColumns>
-        <GridColumn Field=@nameof(Habitat.Name) HeaderText="Name" ValidationRules="@(new ValidationRules{ Required=true})" Width="150"></GridColumn>
-        <GridColumn Field=@nameof(Habitat.Description) HeaderText="Description" ValidationRules="@(new ValidationRules{ Required=true})" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(Animal.Name) HeaderText="Name" Width="150"></GridColumn>
+        <GridColumn Field="AnimalType.Name" HeaderText="Type"Width="150"></GridColumn>
+        <GridColumn Field="CurrentState.Status" HeaderText="Status" Width="150"></GridColumn>
+        <GridColumn Field="CurrentExhibit.Name" HeaderText="Exhibit" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(Animal.BirthDate) HeaderText="Birth" Width="150"></GridColumn>
     </GridColumns>
 </SfGrid>
 
