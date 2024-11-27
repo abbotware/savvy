@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 using Savvy.ZooKeeper.Models;
 
 [Table(nameof(Habitat), Schema = Constants.MetadataSchema)]
-public class Habitat : UpdatableEntity
+public class Habitat : UpdatableRecord
 {
     [Display(AutoGenerateField = false)]
     [JsonIgnore]

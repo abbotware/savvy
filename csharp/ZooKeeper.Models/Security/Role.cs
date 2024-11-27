@@ -3,6 +3,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
 [Table(nameof(Role), Schema = Constants.SecuritySchema)]
-public class Role : NamedEntity
+public class Role : NamedRecord
 {
 }

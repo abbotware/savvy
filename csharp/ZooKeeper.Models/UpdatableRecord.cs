@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
-public abstract class UpdatableEntity : NamedEntity
+public abstract class UpdatableRecord : NamedRecord
 {
-    public UpdatableEntity()
+    public UpdatableRecord()
     {
         Updated = Created;
     }

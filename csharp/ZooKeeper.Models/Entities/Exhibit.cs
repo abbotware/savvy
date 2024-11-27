@@ -1,15 +1,15 @@
-﻿namespace Savvy.ZooKeeper.Models;
+﻿namespace Savvy.ZooKeeper.Models.Entities;
 
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Savvy.ZooKeeper.Models.Metadata;
 
-[Table(nameof(Exhibit), Schema = Constants.DataSchema)]
-public class Exhibit : UserEntity
+[Table(nameof(Exhibit), Schema = Constants.EntitySchema)]
+public class Exhibit : Entity
 {
     public Exhibit()
     {
-        EntityType = UserEntityType.Exhibit;
+        EntityType = EntityType.Exhibit;
     }
     public Habitat? Habitat { get; set; }
 

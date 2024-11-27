@@ -3,6 +3,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Savvy.ZooKeeper.Models.Entities;
 
 [Table(nameof(Principal), Schema = Constants.SecuritySchema)]
 [Index(nameof(Name), IsUnique = true)]
@@ -20,8 +21,8 @@ public class Principal
     [ForeignKey(nameof(Employee))]
     public long? EmployeeId { get; set; }
 
-    public ICollection<UserEntity> CreatedEntities { get; set; } = [];
+    public ICollection<Entity> CreatedEntities { get; set; } = [];
 
-    public ICollection<UserEntity> UpdatedEntities { get; set; } = [];
+    public ICollection<Entity> UpdatedEntities { get; set; } = [];
 
 }

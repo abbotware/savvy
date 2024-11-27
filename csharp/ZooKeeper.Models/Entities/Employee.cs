@@ -1,4 +1,4 @@
-﻿namespace Savvy.ZooKeeper.Models;
+﻿namespace Savvy.ZooKeeper.Models.Entities;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,11 +6,11 @@ using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 [Table(nameof(Employee))]
-public class Employee : UserEntity
+public class Employee : Entity
 {
     public Employee()
     {
-        EntityType = UserEntityType.Employee;
+        EntityType = EntityType.Employee;
     }
 
     [StringLength(100)]

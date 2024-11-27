@@ -3,7 +3,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
 [Table(nameof(PrincipalRole), Schema = Constants.SecuritySchema)]
-public class PrincipalRole : NamedEntity
+public class PrincipalRole : NamedRecord
 {
     public Principal Principal { get; set; } = null!;
 

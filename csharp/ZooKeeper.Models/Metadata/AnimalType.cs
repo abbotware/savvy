@@ -10,7 +10,7 @@ using Savvy.ZooKeeper.Models;
 [Index(nameof(Name), IsUnique = true)]
 [Index(nameof(Species), IsUnique = true)]
 [Index(nameof(Kingdom), nameof(Phylum), nameof(Class), nameof(Order), nameof(Family), nameof(Genus), nameof(Species), IsUnique = true)]
-public class AnimalType : UpdatableEntity
+public class AnimalType : UpdatableRecord
 {
     [DataType(DataType.MultilineText)]
     public string Diet { get; set; } = null!;

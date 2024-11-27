@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Savvy.ZooKeeper.Models.Entities.Animal">
+    <Position X="4" Y="8.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAIIAAAAAECAAAAAECAAEAAAAAAAAAgA=</HashCode>
+      <FileName>Entities\Animal.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CurrentState" />
+      <Property Name="CurrentExhibit" />
+      <Property Name="AnimalType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Savvy.ZooKeeper.Models.Entities.AnimalState">
+    <Position X="0.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAIAAAAQAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Entities\AnimalState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Savvy.ZooKeeper.Models.Entities.Employee">
+    <Position X="9.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAEAAACAAAAAAAAIAAAAAAAAAAAAAAAAAIAAAAAg=</HashCode>
+      <FileName>Entities\Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Savvy.ZooKeeper.Models.Entities.NoteEntity">
+    <Position X="14" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAACAAAAQAAAAAAAEAAAA=</HashCode>
+      <FileName>Entities\NoteEntity.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Note" />
+      <Property Name="Entity" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Savvy.ZooKeeper.Models.Entities.Exhibit">
+    <Position X="7.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAACAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Exhibit.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Habitat" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Savvy.ZooKeeper.Models.Entities.Entity">
+    <Position X="8.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Entities\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Savvy.ZooKeeper.Models.Entities.Note">
+    <Position X="11.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Note.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Savvy.ZooKeeper.Models.Metadata.AnimalType">
+    <Position X="4.25" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAGEAAAAAAggEAAAAAIAAACAAAAAAAAAAAAAAAAARgA=</HashCode>
+      <FileName>Metadata\AnimalType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="HabitatType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Savvy.ZooKeeper.Models.Metadata.Habitat">
+    <Position X="7.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Metadata\Habitat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="10" />
+</ClassDiagram>

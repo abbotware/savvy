@@ -2,7 +2,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-public abstract class NamedEntity : InsertableEntity
+public abstract class NamedRecord : InsertableRecord
 {
 
     [StringLength(100)]
