@@ -42,7 +42,7 @@ public static class SeedDatabase
             var h = habitats[r.Habitat];
 
             m.Name = r.Name;
-            m.HabitatType = h;
+            m.Habitat = h;
             m.Kingdom = r.Kingdom;
             m.Phylum = r.Phylum;
             m.Class = r.Class;
@@ -75,7 +75,7 @@ public static class SeedDatabase
         await LoadTable<Animal, AnimalRow>(modelContext, fi, (m, r) =>
         {
             var at = animalTypes[r.AnimalType];
-            var e = exhibits[at.HabitatType.Name];
+            var e = exhibits[at.Habitat.Name];
 
             m.Name = r.Name;
             m.AnimalType = at;

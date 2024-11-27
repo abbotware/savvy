@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
-public abstract class InsertableRecord
+public abstract class InsertableRecord : IInsertable
 {
     [Key]
     [ReadOnly(true)]

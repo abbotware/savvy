@@ -20,10 +20,10 @@ public class AnimalType : UpdatableRecord
 
     [DeleteBehavior(DeleteBehavior.NoAction)]
     [JsonIgnore]
-    public Habitat HabitatType { get; set; } = null!;
+    public Habitat Habitat { get; set; } = null!;
 
-    [ForeignKey(nameof(HabitatType))]
-    public long HabitatTypeId { get; set; }
+    [ForeignKey(nameof(Habitat))]
+    public long HabitatId { get; set; }
 
     public string? Kingdom { get; set; }
 

@@ -1,36 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Savvy.ZooKeeper.Models;
-using Savvy.ZooKeeper.Models.Metadata;
-
-namespace Savvy.ZooKeeper.Controllers
+﻿namespace Savvy.ZooKeeper.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using Savvy.ZooKeeper.Models;
+    using Savvy.ZooKeeper.Models.Metadata;
+
     [ApiController]
     [Route("metadata/habitat")]
-    public class HabitatController : ControllerBase
+    public class HabitatController : BaseCrudController<Habitat>
     {
-        private readonly ModelContext database;
-
-        public HabitatController(ModelContext modelContext)
+        public HabitatController(ModelContext modelContext) 
+            : base(modelContext)
         {
-            database = modelContext;
-        }
-
-        // GET api/values
-        [HttpGet]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        public ActionResult<IEnumerable<Habitat>> Get()
-        {
-            return Ok(database.Habitats);
-        }
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        [ProducesResponseType(typeof(Habitat), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        public ActionResult<Habitat> Get(int id)
-        {
-            return Ok(database.Habitats.SingleOrDefault(x => x.Id == id));
         }
 
         // POST api/values
@@ -44,21 +24,11 @@ namespace Savvy.ZooKeeper.Controllers
             return Created("get", result.Entity);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Habitat value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
 
         [HttpGet("{id}/animaltypes")]
         [ProducesResponseType(typeof(List<AnimalType>), StatusCodes.Status200OK)]
-        public ActionResult<IEnumerable<AnimalType>> AnimalTypes(int id) 
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<IEnumerable<AnimalType>> AnimalTypes(int id)
         {
             var animals = database.Habitats.SingleOrDefault(x => x.Id == id)?.AnimalTypes ?? Array.Empty<AnimalType>();
 
