@@ -17,6 +17,5 @@ public abstract class Entity : UpdatableRecord
 
     [DeleteBehavior(DeleteBehavior.NoAction)]
     [Display(AutoGenerateField = false)]
-    [JsonIgnore]
-    public ICollection<NoteEntity> HasNotes { get; } = [];
+    public ICollection<Note> Notes { get; } = [];
 }

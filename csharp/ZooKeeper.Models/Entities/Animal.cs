@@ -13,11 +13,11 @@ public class Animal : Entity
         EntityType = EntityType.Animal;
     }
 
-    [JsonIgnore]
     [Display(AutoGenerateField = false)]
     public AnimalType AnimalType { get; set; } = null!;
 
     [ForeignKey(nameof(AnimalType))]
+    [JsonIgnore]
     public long AnimalTypeId { get; set; }
 
     public DateTimeOffset EnteredCaptivitiy { get; set; }
@@ -28,11 +28,11 @@ public class Animal : Entity
     [Display(AutoGenerateField = false)]
     public DateOnly BirthDate => DateOnly.FromDateTime(Birth.LocalDateTime);
 
-    [JsonIgnore]
     [Display(AutoGenerateField = false)]
     public Exhibit? CurrentExhibit { get; set; }
 
     [ForeignKey(nameof(Exhibit))]
+    [JsonIgnore]
     public long? ExhibitId { get; set; }
 
     [Display(AutoGenerateField = false)]
@@ -43,8 +43,16 @@ public class Animal : Entity
     public long? AnimalStateId { get; set; }
 
     [DataType(DataType.MultilineText)]
+    [JsonIgnore]
     public string? Diet { get; set; } = null!;
 
     [DataType(DataType.MultilineText)]
+    [JsonIgnore]
     public string? FeedingTimes { get; set; } = null!;
+
+    [JsonPropertyName("Diet")]
+    public string? ActualDiet => Diet ?? AnimalType?.Diet;
+
+    [JsonPropertyName("FeedingTimes")]
+    public string? ActualFeedingTimes => FeedingTimes ?? AnimalType?.FeedingTimes;
 }

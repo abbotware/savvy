@@ -13,7 +13,6 @@
         {
         }
 
-        // POST api/values
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]

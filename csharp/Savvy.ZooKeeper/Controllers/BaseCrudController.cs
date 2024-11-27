@@ -8,6 +8,9 @@
     {
         protected readonly ModelContext database;
 
+        protected virtual IQueryable<T> OnQuery(ModelContext context) => context.Set<T>().AsQueryable();
+
+
         public BaseCrudController(ModelContext modelContext)
         {
             database = modelContext;
@@ -18,7 +21,7 @@
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public ActionResult<IEnumerable<T>> Get()
         {
-            return Ok(database.Set<T>());
+            return Ok(OnQuery(database));
         }
 
         [HttpGet("{id}")]
@@ -27,7 +30,7 @@
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public ActionResult<T> Get(int id)
         {
-            return Ok(database.Set<T>().SingleOrDefault( x=> x.Id == id));
+            return Ok(OnQuery(database).SingleOrDefault( x=> x.Id == id));
         }
 
         [HttpDelete("{id}")]
