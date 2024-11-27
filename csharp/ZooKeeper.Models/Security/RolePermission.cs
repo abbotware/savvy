@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Savvy.ZooKeeper.Models.Entities;
 
 [Table(nameof(RolePermission), Schema = Constants.SecuritySchema)]
-public class RolePermission : NamedRecord
+public class RolePermission : InsertableRecord
 {
     public Role Role { get; set; } = null!;
 

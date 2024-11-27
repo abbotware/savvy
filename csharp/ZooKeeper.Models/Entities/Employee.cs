@@ -13,22 +13,16 @@ public class Employee : Entity
         EntityType = EntityType.Employee;
     }
 
-    [StringLength(100)]
-    public string FirstName { get; set; } = null!;
-
     [StringLength(100)] 
-    public string LastName { get; set; } = null!;
+    public string? LastName { get; set; } = null!;
 
     [StringLength(100)]
-    public string Email { get; set; } = null!;
+    public string? Email { get; set; } = null!;
 
     [StringLength(25)]
-    public string Phone { get; set; } = null!;
+    public string? Phone { get; set; } = null!;
 
     [DeleteBehavior(DeleteBehavior.NoAction)]
     [JsonIgnore]
     public Principal Principal { get; set; } = null!;
-
-    [ForeignKey(nameof(Principal))]
-    public long PrincipalId { get; set; }
 }

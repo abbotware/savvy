@@ -25,6 +25,9 @@ public class ModelContext(DbContextOptions<ModelContext> options)
 
     public DbSet<Permission> Permissions => Set<Permission>();
 
+    public DbSet<RolePermission> RolePermissions => Set<RolePermission>();
+
+    public DbSet<PrincipalRole> PrincipalRoles => Set<PrincipalRole>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -34,7 +37,7 @@ public class ModelContext(DbContextOptions<ModelContext> options)
         modelBuilder.Entity<Principal>()
             .HasOne(e => e.Employee)
             .WithOne(e => e.Principal)
-            .HasForeignKey<Employee>(e => e.PrincipalId)
+            .HasForeignKey<Principal>(e => e.EmployeeId)
             .IsRequired(false);
 
         modelBuilder.Entity<Entity>()

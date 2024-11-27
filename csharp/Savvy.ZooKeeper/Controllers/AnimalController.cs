@@ -6,7 +6,7 @@
     using Savvy.ZooKeeper.Models.Entities;
 
     [ApiController]
-    [Route("metadata/animal")]
+    [Route("animal")]
     public class AnimalController : BaseCrudController<Animal>
     {
         public AnimalController(ModelContext modelContext) 

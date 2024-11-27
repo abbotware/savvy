@@ -17,11 +17,46 @@ public static class SeedDatabase
 
     public static async Task Seed(ModelContext modelContext, DirectoryInfo root, CancellationToken ct)
     {
-
-        var system = new Principal { Name = "system"};
-        var saved2  = modelContext.Principals.Add(system);
+        var system = new Principal { Name = "system" };
+        var added = modelContext.Principals.Add(system);
         modelContext.SaveChanges();
-        system = saved2.Entity;
+        system = added.Entity;
+
+        var p1 = new Principal() { Name = "Bob" };
+        var p2 = new Principal() { Name = "Alice" };
+        modelContext.Principals.Add(p1);
+        modelContext.Principals.Add(p2);
+        modelContext.SaveChanges();
+
+        var e1 = new Employee() { Name = "Bob", CreatedBy = system, UpdatedBy = system, Principal = p1 };
+        var e2 = new Employee() { Name = "Alice", CreatedBy = system, UpdatedBy = system, Principal = p2 };
+        modelContext.Employees.Add(e1);
+        modelContext.Employees.Add(e2);
+        modelContext.SaveChanges();
+
+        var role1 = new Role() { Name = "Admin", CreatedBy = system };
+        var role2 = new Role() { Name = "Animal Handler", CreatedBy = system };
+        modelContext.Roles.Add(role1);
+        modelContext.Roles.Add(role2);
+        modelContext.SaveChanges();
+
+        var permission1 = new Permission() { Name = "View", CreatedBy = system };
+        var permission2 = new Permission() { Name = "Update", CreatedBy = system };
+        modelContext.Permissions.Add(permission1);
+        modelContext.Permissions.Add(permission2);
+        modelContext.SaveChanges();
+
+        var rp1 = new RolePermission() { Role = role2, Permission = permission1, CreatedBy = system };
+        var rp2 = new RolePermission() { Role = role2, Permission = permission2, CreatedBy = system };
+        modelContext.RolePermissions.Add(rp1);
+        modelContext.RolePermissions.Add(rp2);
+        modelContext.SaveChanges();
+
+        var pr1 = new PrincipalRole() { Role = role1, Principal = p2, CreatedBy = system };
+        var pr2 = new PrincipalRole() { Role = role2, Principal = p1, CreatedBy = system };
+        modelContext.PrincipalRoles.Add(pr1);
+        modelContext.PrincipalRoles.Add(pr2);
+        modelContext.SaveChanges();
 
         var fi = new FileInfo(Path.Combine(root.FullName, "Habitat.csv"));
 
@@ -34,7 +69,7 @@ public static class SeedDatabase
         });
 
         fi = new FileInfo(Path.Combine(root.FullName, "AnimalType.csv"));
-        
+
         var habitats = modelContext.Habitats.ToDictionary(x => x.Name, x => x, StringComparer.InvariantCultureIgnoreCase);
 
         await LoadTable<AnimalType, AnimalTypeRow>(modelContext, fi, (m, r) =>
@@ -80,7 +115,7 @@ public static class SeedDatabase
             m.Name = r.Name;
             m.AnimalType = at;
             m.CurrentExhibit = e;
-            
+
             if (!string.IsNullOrWhiteSpace(r.Diet))
             {
                 m.Diet = r.Diet;
@@ -93,9 +128,9 @@ public static class SeedDatabase
             m.UpdatedById = system.Id;
         });
 
-        modelContext.SaveChanges(); 
+        modelContext.SaveChanges();
 
-  
+
         async Task LoadTable<TModel, TRow>(ModelContext context, FileInfo f, Action<TModel, TRow> callback)
             where TModel : class, new()
         {

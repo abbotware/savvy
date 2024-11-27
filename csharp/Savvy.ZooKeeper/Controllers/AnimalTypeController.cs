@@ -24,7 +24,6 @@
             return Created("get", result.Entity);
         }
 
-
         [HttpGet("{id}/animals")]
         [ProducesResponseType(typeof(List<Animal>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

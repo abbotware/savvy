@@ -15,10 +15,10 @@ public class Exhibit : Entity
     }
     
     [Display(AutoGenerateField = false)]
+    [JsonIgnore]
     public Habitat Habitat { get; set; } = null!;
 
     [ForeignKey(nameof(Habitat))]
-    [JsonIgnore]
     public long HabitatId { get; set; }
 
     [DeleteBehavior(DeleteBehavior.NoAction)]

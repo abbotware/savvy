@@ -14,10 +14,10 @@ public class Animal : Entity
     }
 
     [Display(AutoGenerateField = false)]
+    [JsonIgnore]
     public AnimalType AnimalType { get; set; } = null!;
 
     [ForeignKey(nameof(AnimalType))]
-    [JsonIgnore]
     public long AnimalTypeId { get; set; }
 
     public DateTimeOffset EnteredCaptivitiy { get; set; }
@@ -29,17 +29,17 @@ public class Animal : Entity
     public DateOnly BirthDate => DateOnly.FromDateTime(Birth.LocalDateTime);
 
     [Display(AutoGenerateField = false)]
+    [JsonIgnore]
     public Exhibit? CurrentExhibit { get; set; }
 
     [ForeignKey(nameof(Exhibit))]
-    [JsonIgnore]
     public long? ExhibitId { get; set; }
 
     [Display(AutoGenerateField = false)]
+    [JsonIgnore]
     public AnimalState? CurrentState { get; set; }
 
     [ForeignKey(nameof(AnimalState))]
-    [JsonIgnore]
     public long? AnimalStateId { get; set; }
 
     [DataType(DataType.MultilineText)]
