@@ -15,7 +15,7 @@ public class Principal
     public long Id { get; set; }
 
     [Required]
-    public string Name { get; set; } = string.Empty;
+    public virtual string Name { get; set; } = string.Empty;
 
     [Display(AutoGenerateField = false)]
     [JsonIgnore]

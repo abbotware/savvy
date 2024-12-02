@@ -2,7 +2,7 @@
 @inherits BaseGrid<Exhibit>
 @rendermode InteractiveServer
 
-<SfGrid DataSource="@Rows" AllowPaging="true" Toolbar="@(new string[] {"Add", "Edit" ,"Delete","Update","Cancel" })">
+<SfGrid @ref="@Grid" DataSource="@Rows" AllowSorting="true" AllowPaging="true" AllowSelection="true" AllowFiltering="true" AllowGrouping="true" AllowMultiSorting="true" Toolbar="@(new string[] {"Add", "Edit" ,"Delete","Update","Cancel" })">
     <GridEvents OnActionBegin="OnGridActionBegin" TValue="Exhibit"></GridEvents>
     <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="@EditMode.Dialog" Dialog="DialogParams">
         <Template>
@@ -22,7 +22,15 @@
 
         </Template>
     </GridEditSettings>
-
+    <GridTemplates>
+        <DetailTemplate>
+            @{
+                var row = (Exhibit)context;
+                <SfGrid DataSource="@row.Animals">
+                </SfGrid>
+            }
+        </DetailTemplate>
+    </GridTemplates>
     <GridColumns>
         <GridColumn Field=@nameof(Exhibit.Name) HeaderText="Name" Width="150"></GridColumn>
         <GridColumn Field="Habitat.Name" HeaderText="Type" Width="150"></GridColumn>

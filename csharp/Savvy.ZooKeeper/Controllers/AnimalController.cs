@@ -20,7 +20,7 @@
             return modelContext.Animals
                 .Include(x => x.CurrentState)
                 .Include(x => x.Notes)
-                .Include(x => x.CurrentExhibit)
+                .Include(x => x.Exhibit)
                 .Include(x => x.AnimalType)
                 .AsQueryable();
         }

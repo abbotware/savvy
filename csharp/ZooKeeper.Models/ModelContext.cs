@@ -13,6 +13,8 @@ public class ModelContext(DbContextOptions<ModelContext> options)
 
     public DbSet<Animal> Animals => Set<Animal>();
 
+    public DbSet<AnimalState> AnimalStates => Set<AnimalState>();
+
     public DbSet<Exhibit> Exhibits => Set<Exhibit>();
 
     public DbSet<Note> Notes => Set<Note>();

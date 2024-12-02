@@ -19,6 +19,7 @@ public class AnimalType : UpdatableRecord
     public string FeedingTimes { get; set; } = null!;
 
     [DeleteBehavior(DeleteBehavior.NoAction)]
+    [Display(AutoGenerateField = false)]
     [JsonIgnore]
     public Habitat Habitat { get; set; } = null!;
 

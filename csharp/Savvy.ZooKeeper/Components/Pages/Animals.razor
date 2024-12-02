@@ -2,7 +2,8 @@
 @inherits BaseGrid<Animal>
 @rendermode InteractiveServer
 
-<SfGrid DataSource="@Rows" AllowPaging="true" Toolbar="@(new string[] {"Add", "Edit" ,"Delete","Update","Cancel" })">
+<SfGrid ID="Grid" @ref="@Grid" DataSource="@Rows" AllowSorting="true" AllowPaging="true" AllowSelection="true" AllowFiltering="true" AllowGrouping="true" AllowMultiSorting="true" Toolbar="@(new string[] {"Add", "Edit" ,"Delete","Update","Cancel" })">
+    <GridSelectionSettings Mode="SelectionMode.Row"> </GridSelectionSettings>
     <GridEvents OnActionBegin="OnGridActionBegin" TValue="Animal"></GridEvents>
     <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="@EditMode.Dialog" Dialog="DialogParams">
         <Template>
@@ -11,7 +12,7 @@
             }
 
             <SfDataForm ID="GridForm" Model="@row" OnValidSubmit="OnFormValidSubmit">
-                <FormButtons ></FormButtons>
+                <FormButtons></FormButtons>
                 <FormValidator>
                     <DataAnnotationsValidator></DataAnnotationsValidator>
                 </FormValidator>
@@ -25,11 +26,50 @@
 
     <GridColumns>
         <GridColumn Field=@nameof(Animal.Name) HeaderText="Name" Width="150"></GridColumn>
-        <GridColumn Field="AnimalType.Name" HeaderText="Type"Width="150"></GridColumn>
+        <GridColumn Field="AnimalType.Name" HeaderText="Type" Width="150"></GridColumn>
         <GridColumn Field="CurrentState.Status" HeaderText="Status" Width="150"></GridColumn>
         <GridColumn Field="CurrentExhibit.Name" HeaderText="Exhibit" Width="150"></GridColumn>
         <GridColumn Field=@nameof(Animal.BirthDate) HeaderText="Birth" Width="150"></GridColumn>
     </GridColumns>
+    <GridEvents RowSelected="GetSelectedRecords" TValue="Animal"></GridEvents>
+
 </SfGrid>
 
 
+<SfTab ID="Tab">
+    <TabItems>
+        <TabItem>
+            <ChildContent>
+                <TabHeader Text="Status History"></TabHeader>
+            </ChildContent>
+            <ContentTemplate>
+                <SfGrid DataSource="@States">
+                    <GridColumns>
+                        <GridColumn Field=@nameof(AnimalState.Created) HeaderText="Created" Width="150"></GridColumn>
+                        <GridColumn Field=@nameof(AnimalState.Effective) HeaderText="Effective" Width="150"></GridColumn>
+                        <GridColumn Field=@nameof(AnimalState.Status) HeaderText="Notes" Width="150"></GridColumn>
+                        <GridColumn Field=@nameof(AnimalState.WasFed) HeaderText="Fed" Width="150"></GridColumn>
+                        <GridColumn Field="CreatedBy.Name" HeaderText="CreatedBy" Width="150"></GridColumn>
+                    </GridColumns>
+                </SfGrid>
+            </ContentTemplate>
+        </TabItem>
+
+        <TabItem>
+            <ChildContent>
+                <TabHeader Text="Notes"></TabHeader>
+            </ChildContent>
+            <ContentTemplate>
+                <SfGrid DataSource="@Notes">
+                    <GridColumns>
+                        <GridColumn Field=@nameof(Note.Created) HeaderText="Created" Width="150"></GridColumn>
+                        <GridColumn Field=@nameof(Note.Description) HeaderText="Notes" Width="150"></GridColumn>
+                        <GridColumn Field="CreatedBy.Name" HeaderText="CreatedBy" Width="150"></GridColumn>
+                    </GridColumns>
+                </SfGrid>
+            </ContentTemplate>
+        </TabItem>
+
+    </TabItems>
+
+</SfTab>

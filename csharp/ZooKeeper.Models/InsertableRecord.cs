@@ -11,7 +11,6 @@ public abstract class InsertableRecord : IIdentifiable<long>
     [Key]
     [ReadOnly(true)]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    [Display(AutoGenerateField = false)]
     public long Id { get; set; }
 
     [ReadOnly(true)]
@@ -26,5 +25,5 @@ public abstract class InsertableRecord : IIdentifiable<long>
     [JsonIgnore]
     [DeleteBehavior(DeleteBehavior.NoAction)]
     [Display(AutoGenerateField = false)]
-    public Principal CreatedBy { get; set; } = null!;
+    public virtual Principal CreatedBy { get; set; } = null!;
 }

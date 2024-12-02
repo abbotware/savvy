@@ -10,6 +10,7 @@ public class Note : Entity
     public Note()
     {
         EntityType = EntityType.Note;
+        Name = Guid.NewGuid().ToString();
     }
 
     [DeleteBehavior(DeleteBehavior.NoAction)]

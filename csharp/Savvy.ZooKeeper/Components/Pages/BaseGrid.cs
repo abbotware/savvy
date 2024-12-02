@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Microsoft.AspNetCore.Components;
 using Savvy.ZooKeeper.Models;
+using Savvy.ZooKeeper.Models.Entities;
 using Syncfusion.Blazor;
 using Syncfusion.Blazor.Grids;
 
@@ -21,6 +22,11 @@ namespace Savvy.ZooKeeper.Components.Pages
         protected Syncfusion.Blazor.Grids.Action? LastAction;
 
         protected virtual IQueryable<T> OnQuery(ModelContext context) => context.Set<T>().AsQueryable();
+
+
+        protected SfGrid<T>? Grid;
+
+        protected T? SelectedRow { get; set; }
 
         protected override Task OnInitializedAsync()
         {
@@ -46,6 +52,31 @@ namespace Savvy.ZooKeeper.Components.Pages
         protected void OnFormValidSubmit()
         {
             PerformAction(true);
+        }
+
+        public async Task GetSelectedRecords(RowSelectEventArgs<T> args)
+        {
+            if (this.Grid is null)
+            {
+                return;
+            }
+
+            var rows = await this.Grid.GetSelectedRecordsAsync();
+
+            SelectedRow = rows.FirstOrDefault();
+
+            if (SelectedRow is null)
+            {
+                return;
+            }
+
+            OnSelectedRow(SelectedRow);
+
+            StateHasChanged();
+        }
+
+        protected virtual void OnSelectedRow(T selectedRow)
+        {
         }
 
         private void PerformAction(bool isForm)

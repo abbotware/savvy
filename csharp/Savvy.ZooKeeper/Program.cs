@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Scalar.AspNetCore;
 using Savvy.ZooKeeper.Services;
+using CsvHelper;
+using Savvy.ZooKeeper.Models.Data;
 
 namespace Savvy.ZooKeeper;
 
@@ -34,6 +36,13 @@ public class Program
         Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzU5NTc0MUAzMjM3MmUzMDJlMzBPc1VJV2ZxNDJPNndTRDkvc0ZGQUhORUVHZk1wU0x4NXlleWV0QlNsejlBPQ==");
 
         var app = builder.Build();
+
+        using var s= app.Services.CreateScope();
+        using var db = s.ServiceProvider.GetService<ModelContext>()!;
+        db.Database.EnsureDeleted();
+        db.Database.EnsureCreated();
+        var di = new DirectoryInfo(Path.Combine(AppContext.BaseDirectory, "data"));
+        SeedDatabase.Seed(db, di, default).GetAwaiter().GetResult();
 
         app.MapDefaultEndpoints();
 

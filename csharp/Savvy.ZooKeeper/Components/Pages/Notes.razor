@@ -2,13 +2,34 @@
 @inherits BaseGrid<Note>
 @rendermode InteractiveServer
 
-<SfGrid DataSource="@Rows" AllowPaging="true">
+<SfGrid @ref="@Grid" DataSource="@Rows" AllowSorting="true" AllowPaging="true" AllowSelection="true" AllowFiltering="true" AllowGrouping="true" AllowMultiSorting="true">
 
     <GridColumns>
         <GridColumn Field=@nameof(Note.Description) HeaderText="Note" Width="150"></GridColumn>
         <GridColumn Field="CreatedBy.Name" HeaderText="Created By" Width="150"></GridColumn>
         <GridColumn Field=@nameof(Note.Created) HeaderText="Created At" Width="150"></GridColumn>
     </GridColumns>
+    <GridEvents RowSelected="GetSelectedRecords" TValue="Note"></GridEvents>
 </SfGrid>
 
 
+
+<SfTab ID="Tab">
+    <TabItems>
+        <TabItem>
+            <ChildContent>
+                <TabHeader Text="Links"></TabHeader>
+            </ChildContent>
+            <ContentTemplate>
+                <SfGrid DataSource="@Entities">
+                    <GridColumns>
+                        <GridColumn Field=@nameof(Entity.EntityType) HeaderText="Entity Type" Width="150"></GridColumn>
+                        <GridColumn Field=@nameof(Entity.Name) HeaderText="Name" Width="150"></GridColumn>
+                    </GridColumns>
+                </SfGrid>
+            </ContentTemplate>
+        </TabItem>
+
+    </TabItems>
+
+</SfTab>

@@ -30,7 +30,7 @@ public class Animal : Entity
 
     [Display(AutoGenerateField = false)]
     [JsonIgnore]
-    public Exhibit? CurrentExhibit { get; set; }
+    public Exhibit? Exhibit { get; set; }
 
     [ForeignKey(nameof(Exhibit))]
     public long? ExhibitId { get; set; }
@@ -39,7 +39,7 @@ public class Animal : Entity
     [JsonIgnore]
     public AnimalState? CurrentState { get; set; }
 
-    [ForeignKey(nameof(AnimalState))]
+    [ForeignKey(nameof(CurrentState))]
     public long? AnimalStateId { get; set; }
 
     [DataType(DataType.MultilineText)]

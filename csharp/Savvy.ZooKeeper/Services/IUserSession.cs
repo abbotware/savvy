@@ -4,6 +4,8 @@
     {
         long UserId { get; set; }
 
+        bool IsAdmin { get; }
+
         string? Name { get; }
     }
 }

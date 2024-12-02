@@ -11,12 +11,26 @@ namespace Savvy.ZooKeeper.Components.Pages
         [Inject]
         IUserSession UserSession { get; set; } = null!;
 
+        IReadOnlyList<Entity> Entities { get; set; } = Array.Empty<Entity>();
+
         protected override IQueryable<Note> OnQuery(ModelContext modelContext)
         {
-            return modelContext.Notes.Where(x => x.CreatedById == UserSession.UserId)
-                .Include(x => x.CreatedBy)
-                .Include(x => x.NoteOf)
-                .AsQueryable();
+            var query = modelContext.Notes.AsQueryable();
+
+            if (!UserSession.IsAdmin)
+            {
+                query = query.Where(x => x.CreatedById == UserSession.UserId);
+            }
+
+            return query
+                    .Include(x => x.CreatedBy)
+                    .Include(x => x.NoteOf)
+                    .ThenInclude(x => x.Entity);
+        }
+
+        protected override void OnSelectedRow(Note selectedRow)
+        {
+            Entities = selectedRow.NoteOf.Select(x => x.Entity).ToList();
         }
     }
 }
