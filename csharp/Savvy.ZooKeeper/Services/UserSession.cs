@@ -14,7 +14,7 @@
 
         public bool IsAdmin => modelContext.PrincipalRoles.Any(x => x.PrincipalId == UserId && x.RoleId == 1);
 
-        public bool ViewPII => IsAdmin;
+        public bool CanViewPII => IsAdmin;
 
         public UserSession(IServiceScopeFactory factory)
         {

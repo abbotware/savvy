@@ -43,7 +43,7 @@ namespace Savvy.ZooKeeper.Components.Pages.Admin
 
         public IReadOnlyList<Employee> MaskEmployees()
         {
-            if (UserSession.IsAdmin)
+            if (UserSession.CanViewPII)
             {
                 return ModelContext.Employees.ToList();
             }
