@@ -9,12 +9,12 @@
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="33.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
-    <PackageReference Include="Scalar.AspNetCore" Version="1.2.44" />
-    <PackageReference Include="Syncfusion.Blazor.Navigations" Version="27.2.3" />
-    <PackageReference Include="Syncfusion.Blazor.Themes" Version="27.2.3" />
-	<PackageReference Include="Syncfusion.Blazor.Grid" Version="27.2.3" />
-	<PackageReference Include="Syncfusion.Blazor.DataForm" Version="27.2.3" />
-	<PackageReference Include="Syncfusion.Blazor.Charts" Version="27.2.3" />
+    <PackageReference Include="Scalar.AspNetCore" Version="1.2.45" />
+    <PackageReference Include="Syncfusion.Blazor.Navigations" Version="27.2.4" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="27.2.4" />
+	<PackageReference Include="Syncfusion.Blazor.Grid" Version="27.2.4" />
+	<PackageReference Include="Syncfusion.Blazor.DataForm" Version="27.2.4" />
+	<PackageReference Include="Syncfusion.Blazor.Charts" Version="27.2.4" />
   </ItemGroup>
 
   <ItemGroup>
