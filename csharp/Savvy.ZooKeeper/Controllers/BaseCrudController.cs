@@ -4,7 +4,7 @@
     using Savvy.ZooKeeper.Models;
 
     public class BaseCrudController<T> : ControllerBase
-        where T : class, IInsertable
+        where T : class, IIdentifiable<long>
     {
         protected readonly ModelContext database;
 

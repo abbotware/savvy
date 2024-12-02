@@ -3,6 +3,51 @@
 
 <PageTitle>Admin</PageTitle>
 
+<SfTab>
+    <TabItems>
+        <TabItem>
+            <ChildContent>
+                <TabHeader Text="Principals"></TabHeader>
+            </ChildContent>
+            <ContentTemplate>
+                <SfGrid DataSource="@Principals"></SfGrid>
+            </ContentTemplate>
+        </TabItem>
+        <TabItem>
+            <ChildContent>
+                <TabHeader Text="Roles"></TabHeader>
+            </ChildContent>
+            <ContentTemplate>
+                <SfGrid DataSource="@Roles">
+                    <GridTemplates>
+                        <DetailTemplate>
+                            @{
+                                var role = (Role)context;
+                                <SfGrid DataSource="@role.PrincipalRoles">
+                                </SfGrid>
+                            }
+                        </DetailTemplate>
+                    </GridTemplates>
 
-<SfButton OnClick=@OnReseedDatabase>Reseed Database</SfButton>
 
+                </SfGrid>
+            </ContentTemplate>
+        </TabItem>
+        <TabItem>
+            <ChildContent>
+                <TabHeader Text="Permissions"></TabHeader>
+            </ChildContent>
+            <ContentTemplate>
+                <SfGrid DataSource="@Permissions"></SfGrid>
+            </ContentTemplate>
+        </TabItem>
+        <TabItem>
+            <ChildContent>
+                <TabHeader Text="Database"></TabHeader>
+            </ChildContent>
+            <ContentTemplate>
+                <SfButton OnClick=@OnReseedDatabase>Reseed Database</SfButton>
+            </ContentTemplate>
+        </TabItem>
+    </TabItems>
+</SfTab>
