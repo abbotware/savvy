@@ -12,6 +12,8 @@ namespace Savvy.ZooKeeper.Components.Pages
     {
         public EmptyPointMode Mode = EmptyPointMode.Gap;
 
+        public record AttentionRow(long Id, AnimalStatus Status, string Name, string Type, string? Exhibit);
+
         public class PieData
         {
             public PieData(AnimalStatus status, double value)
@@ -35,6 +37,8 @@ namespace Savvy.ZooKeeper.Components.Pages
         }
         public List<PieData> PieChartPoints { get; set; } = new();
 
+        public List<AttentionRow> Attention { get; set; } = new();
+
         protected override void OnInitialized()
         {
             var status = Database.Animals
@@ -43,6 +47,19 @@ namespace Savvy.ZooKeeper.Components.Pages
             .GroupBy(x => x.CurrentStatus);
 
             PieChartPoints = status.Select(g => new PieData(g.Key,g.Count())).ToList();
+
+            var animals = Database.Animals
+                .Include(x => x.AnimalType)
+                .Include(x => x.Exhibit)
+                .Include(x => x.CurrentState)
+                .ToList()
+                .Where(x=> x.CurrentStatus != AnimalStatus.Healthy)
+                .OrderBy(x=> x.CurrentStatus);
+
+            foreach (var a in animals)
+            {
+                Attention.Add(new AttentionRow(a.Id, a.CurrentStatus, a.Name, a.AnimalType.Name, a?.Exhibit?.Name));
+            }
         }
 
         private void OnLabel(AccumulationTextRenderEventArgs args)
