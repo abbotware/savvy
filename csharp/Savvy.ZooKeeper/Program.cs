@@ -37,7 +37,11 @@ public class Program
             options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
         });
 
+#if DEBUG
         builder.Services.AddDbContext<ModelContext>(o => o.UseSqlServer("name=Database"));
+#else
+        builder.Services.AddDbContext<ModelContext>(o => o.UseInMemoryDatabase("database"));
+#endif
         builder.Services.AddOpenApi();
         builder.Services.AddSyncfusionBlazor();
 

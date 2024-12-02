@@ -35,7 +35,8 @@ public abstract class UpdatableRecord : NamedRecord
     public Principal UpdatedBy { get; set; } = null!;
 
     [Timestamp]
+    [ConcurrencyCheck]
     [ReadOnly(true)]
     [Display(AutoGenerateField = false)]
-    public byte[] Version { get; set; } = null!;
+    public byte[] Version { get; set; } = Array.Empty<byte>();
 }
