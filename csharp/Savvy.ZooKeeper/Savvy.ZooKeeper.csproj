@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Savvy.ServiceDefaults\Savvy.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\Savvy.Aspire.ServiceDefaults\Savvy.Aspire.ServiceDefaults.csproj" />
     <ProjectReference Include="..\Savvy.ZooKeeper.Models\Savvy.ZooKeeper.Models.csproj" />
   </ItemGroup>
 
