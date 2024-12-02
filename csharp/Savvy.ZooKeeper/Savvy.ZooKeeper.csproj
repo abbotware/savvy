@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Savvy.ServiceDefaults\Savvy.ServiceDefaults.csproj" />
-    <ProjectReference Include="..\ZooKeeper.Models\Savvy.ZooKeeper.Models.csproj" />
+    <ProjectReference Include="..\Savvy.ZooKeeper.Models\Savvy.ZooKeeper.Models.csproj" />
   </ItemGroup>
 
 </Project>
