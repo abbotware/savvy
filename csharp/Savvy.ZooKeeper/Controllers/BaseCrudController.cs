@@ -4,17 +4,12 @@
     using Savvy.ZooKeeper.Models;
     using Savvy.ZooKeeper.Services;
 
-    public class BaseCrudController<T> : ControllerBase
+    public class BaseCrudController<T> : BaseDBController<T>
         where T : class, IIdentifiable<long>
     {
-        protected readonly ModelContext Database;
-
-        protected readonly IUserSession UserSession;
-
         public BaseCrudController(ModelContext modelContext, IUserSession userSession)
+            : base(modelContext, userSession)
         {
-            Database = modelContext;
-            UserSession = userSession;
         }
 
         [HttpGet]
@@ -24,42 +19,5 @@
         {
             return Ok(OnQuery(Database));
         }
-
-        [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        public ActionResult<T> Get(int id)
-        {
-            var found = OnQuery(Database).SingleOrDefault(x => x.Id == id);
-
-            if (found == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(found);
-        }
-
-        [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        public IActionResult Delete(int id)
-        {
-            var found = Database.Set<T>().SingleOrDefault(x => x.Id == id);
-
-            if (found == null)
-            {
-                return NotFound();
-            }
-
-            Database.Remove(found);
-            Database.SaveChanges();
-
-            return Ok();
-        }
-
-        protected virtual IQueryable<T> OnQuery(ModelContext context) => context.Set<T>().AsQueryable();
     }
 }

@@ -183,6 +183,17 @@ public static class SeedDatabase
         modelContext.NoteEntities.Add(new NoteEntity { NoteId = added4.Entity.Id, UserEntityId = modelContext.Exhibits.Skip(2).First().Id, });
         modelContext.SaveChanges();
 
+        foreach (var a in modelContext.Animals
+            .Where(x => x.CurrentState != null)
+            .Where(x => x.CurrentState!.Status == AnimalStatus.Sick)
+            .ToList())
+        {
+            var sickNote = modelContext.Notes.Add(new Note { Description = "animal running a fever", CreatedById = 2, UpdatedById = 2 });
+            modelContext.SaveChanges();
+            modelContext.NoteEntities.Add(new NoteEntity { NoteId = sickNote.Entity.Id, UserEntityId = a.Id });
+            modelContext.SaveChanges();
+        }
+
         async Task LoadTable<TModel, TRow>(ModelContext context, FileInfo f, Action<TModel, TRow> callback)
             where TModel : class, new()
         {

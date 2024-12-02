@@ -11,6 +11,7 @@ using Scalar.AspNetCore;
 using Savvy.ZooKeeper.Services;
 using CsvHelper;
 using Savvy.ZooKeeper.Models.Data;
+using System.Text.Json.Serialization;
 
 namespace Savvy.ZooKeeper;
 
@@ -26,8 +27,17 @@ public class Program
             .AddInteractiveServerComponents();
 
         builder.Services.AddControllers();
+        builder.Services.ConfigureHttpJsonOptions(options =>
+        {
+            options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        });
 
-        builder.Services.AddDbContext<ModelContext>(o =>o.UseSqlServer("name=Database"));
+        builder.Services.Configure<Microsoft.AspNetCore.Mvc.JsonOptions>(options =>
+        {
+            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        });
+
+        builder.Services.AddDbContext<ModelContext>(o => o.UseSqlServer("name=Database"));
         builder.Services.AddOpenApi();
         builder.Services.AddSyncfusionBlazor();
 
@@ -37,12 +47,7 @@ public class Program
 
         var app = builder.Build();
 
-        using var s= app.Services.CreateScope();
-        using var db = s.ServiceProvider.GetService<ModelContext>()!;
-        db.Database.EnsureDeleted();
-        db.Database.EnsureCreated();
-        var di = new DirectoryInfo(Path.Combine(AppContext.BaseDirectory, "data"));
-        SeedDatabase.Seed(db, di, default).GetAwaiter().GetResult();
+        SeedDatabase(app);
 
         app.MapDefaultEndpoints();
 
@@ -63,10 +68,22 @@ public class Program
 
         app.MapStaticAssets();
         app.MapControllers();
-        
+
         app.MapRazorComponents<App>()
             .AddInteractiveServerRenderMode();
 
         app.Run();
+    }
+
+    private static void SeedDatabase(WebApplication app)
+    {
+        IServiceScope s;
+        ModelContext db;
+        s = app.Services.CreateScope();
+        db = s.ServiceProvider.GetService<ModelContext>()!;
+        db.Database.EnsureDeleted();
+        db.Database.EnsureCreated();
+        var di = new DirectoryInfo(Path.Combine(AppContext.BaseDirectory, "data"));
+        Models.Data.SeedDatabase.Seed(db, di, default).GetAwaiter().GetResult();
     }
 }

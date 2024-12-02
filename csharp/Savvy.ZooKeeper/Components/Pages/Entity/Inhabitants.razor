@@ -2,27 +2,8 @@
 @inherits BaseGrid<Animal>
 @rendermode InteractiveServer
 
-<SfGrid ID="Grid" @ref="@Grid" DataSource="@Rows" AllowSorting="true" AllowPaging="true" AllowSelection="true" AllowFiltering="true" AllowGrouping="true" AllowMultiSorting="true" Toolbar="@(new string[] {"Edit" ,"Delete","Update","Cancel" })">
+<SfGrid ID="Grid" @ref="@Grid" DataSource="@Rows" AllowSorting="true" AllowPaging="true" AllowSelection="true" AllowFiltering="true" AllowGrouping="true" AllowMultiSorting="true" Toolbar="@(new string[] {"Delete","Update","Cancel" })">
     <GridSelectionSettings Mode="SelectionMode.Row"> </GridSelectionSettings>
-    <GridEvents OnActionBegin="OnGridActionBegin" TValue="Animal"></GridEvents>
-    <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="@EditMode.Dialog" Dialog="DialogParams">
-        <Template>
-            @{
-                var row = (Animal)context;
-            }
-
-            <SfDataForm ID="GridForm" Model="@row" OnValidSubmit="OnFormValidSubmit">
-                <FormButtons></FormButtons>
-                <FormValidator>
-                    <DataAnnotationsValidator></DataAnnotationsValidator>
-                </FormValidator>
-                <FormItems>
-                    <FormAutoGenerateItems></FormAutoGenerateItems>
-                </FormItems>
-            </SfDataForm>
-
-        </Template>
-    </GridEditSettings>
 
     <GridColumns>
         <GridColumn Field=@nameof(Animal.Name) HeaderText="Name" Width="150"></GridColumn>
@@ -30,6 +11,9 @@
         <GridColumn Field=@nameof(Animal.CurrentStatus) HeaderText="Status" Width="150"></GridColumn>
         <GridColumn Field="Exhibit.Name" HeaderText="Exhibit" Width="150"></GridColumn>
         <GridColumn Field=@nameof(Animal.BirthDate) HeaderText="Birth" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(Animal.PreferredHabitat) HeaderText="Birth" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(Animal.ActualDiet) HeaderText="Birth" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(Animal.ActualFeedingTimes) HeaderText="Birth" Width="150"></GridColumn>
     </GridColumns>
     <GridEvents RowSelected="GetSelectedRecords" TValue="Animal"></GridEvents>
 

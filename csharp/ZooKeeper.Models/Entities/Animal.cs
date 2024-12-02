@@ -53,9 +53,20 @@ public class Animal : Entity
     [JsonIgnore]
     public string? FeedingTimes { get; set; } = null!;
 
-    [JsonPropertyName("Diet")]
+    [JsonPropertyName("diet")]
+    [NotMapped]
     public string? ActualDiet => Diet ?? AnimalType?.Diet;
 
-    [JsonPropertyName("FeedingTimes")]
+    [JsonPropertyName("feedingTimes")]
+    [NotMapped]
     public string? ActualFeedingTimes => FeedingTimes ?? AnimalType?.FeedingTimes;
+
+    [NotMapped]
+    public string? PreferredHabitat => AnimalType?.Habitat?.Name ?? string.Empty;
+
+    [JsonPropertyName("notes")]
+    [NotMapped]
+    [Display(AutoGenerateField = false)]
+    public ICollection<Note> AnimalNotes => NoteEntities.Select(x => x.Note).ToList();
+
 }

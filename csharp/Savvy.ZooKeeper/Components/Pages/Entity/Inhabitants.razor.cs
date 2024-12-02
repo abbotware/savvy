@@ -13,14 +13,14 @@ namespace Savvy.ZooKeeper.Components.Pages.Entity
         protected override IQueryable<Animal> OnQuery(ModelContext modelContext)
         {
             return modelContext.Animals
-                .Include(x=> x.CreatedBy)
+                .Include(x => x.CreatedBy)
                 .Include(x => x.CurrentState!)
                 .ThenInclude(x => x.CreatedBy)
                 .Include(x => x.Notes)
-                .ThenInclude(x=> x.CreatedBy)
+                .ThenInclude(x => x.CreatedBy)
                 .Include(x => x.Exhibit)
                 .Include(x => x.AnimalType)
-                .AsQueryable();
+                .ThenInclude(x => x.Habitat);
         }
         protected override void OnSelectedRow(Animal selectedRow)
         {

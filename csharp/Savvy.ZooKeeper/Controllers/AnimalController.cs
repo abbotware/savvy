@@ -1,6 +1,5 @@
 ﻿namespace Savvy.ZooKeeper.Controllers
 {
-    using System.Text.Json.Serialization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Savvy.ZooKeeper.Models;
@@ -9,7 +8,7 @@
 
     [ApiController]
     [Route("animal")]
-    public class AnimalController : BaseCrudController<Animal>
+    public class AnimalController : BaseDBController<Animal>
     {
         public record CreateExhibit(string Name, long HabitatId);
 
@@ -28,7 +27,7 @@
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        public ActionResult<IEnumerable<Animal>> Get(long? exhibitId, bool? requiresAttention)
+        public ActionResult<IEnumerable<Animal>> Get([FromQuery(Name ="in_exhibit")]long? exhibitId, [FromQuery(Name = "needing_attention")] bool? needingAttention)
         {
             var query = OnQuery(Database);
 
@@ -39,7 +38,7 @@
 
             var intermediate = query.ToList();
 
-            if (requiresAttention.HasValue)
+            if (needingAttention.HasValue)
             {
                 intermediate = intermediate.Where(x => x.CurrentStatus != AnimalStatus.Healthy).ToList();
             }
@@ -122,10 +121,15 @@
         protected override IQueryable<Animal> OnQuery(ModelContext modelContext)
         {
             return modelContext.Animals
-                .Include(x => x.CurrentState)
-                .Include(x => x.Notes)
-                .Include(x => x.Exhibit)
-                .Include(x => x.AnimalType);
+               .Include(x => x.CreatedBy)
+               .Include(x => x.CurrentState!)
+               .ThenInclude(x => x.CreatedBy)
+               .Include(x => x.NoteEntities)
+               .ThenInclude(x => x.Note)
+               .ThenInclude(x => x.CreatedBy)
+               .Include(x => x.Exhibit)
+               .Include(x => x.AnimalType)
+               .ThenInclude(x => x.Habitat);
         }
     }
 }

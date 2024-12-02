@@ -23,6 +23,7 @@
             <ContentTemplate>
                 <SfGrid DataSource="@Entities">
                     <GridColumns>
+                        <GridColumn Field=@nameof(Entity.Id) HeaderText="Id" Width="150"></GridColumn>
                         <GridColumn Field=@nameof(Entity.EntityType) HeaderText="Entity Type" Width="150"></GridColumn>
                         <GridColumn Field=@nameof(Entity.Name) HeaderText="Name" Width="150"></GridColumn>
                     </GridColumns>
