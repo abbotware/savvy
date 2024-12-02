@@ -3,6 +3,7 @@
 using Microsoft.EntityFrameworkCore;
 using Savvy.ZooKeeper.Models.Entities;
 using Savvy.ZooKeeper.Models.Metadata;
+using Savvy.ZooKeeper.Models.Security;
 
 public class ModelContext(DbContextOptions<ModelContext> options) 
     : DbContext(options)

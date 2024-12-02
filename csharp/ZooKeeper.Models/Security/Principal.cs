@@ -1,9 +1,10 @@
-﻿namespace Savvy.ZooKeeper.Models;
+﻿namespace Savvy.ZooKeeper.Models.Security;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
+using Savvy.ZooKeeper.Models;
 using Savvy.ZooKeeper.Models.Entities;
 
 [Table(nameof(Principal), Schema = Constants.SecuritySchema)]

@@ -27,7 +27,7 @@
     <GridColumns>
         <GridColumn Field=@nameof(Animal.Name) HeaderText="Name" Width="150"></GridColumn>
         <GridColumn Field="AnimalType.Name" HeaderText="Type" Width="150"></GridColumn>
-        <GridColumn Field="CurrentState.Status" HeaderText="Status" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(Animal.CurrentStatus) HeaderText="Status" Width="150"></GridColumn>
         <GridColumn Field="Exhibit.Name" HeaderText="Exhibit" Width="150"></GridColumn>
         <GridColumn Field=@nameof(Animal.BirthDate) HeaderText="Birth" Width="150"></GridColumn>
     </GridColumns>

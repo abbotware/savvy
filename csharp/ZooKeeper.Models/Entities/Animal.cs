@@ -22,11 +22,11 @@ public class Animal : Entity
 
     public DateTimeOffset EnteredCaptivitiy { get; set; }
 
-    public DateTimeOffset Birth { get; set; }
+    public DateTimeOffset? Birth { get; set; }
 
     [JsonIgnore]
     [Display(AutoGenerateField = false)]
-    public DateOnly BirthDate => DateOnly.FromDateTime(Birth.LocalDateTime);
+    public DateOnly? BirthDate => Birth.HasValue ? DateOnly.FromDateTime(Birth.Value.LocalDateTime) : null;
 
     [Display(AutoGenerateField = false)]
     [JsonIgnore]
@@ -39,8 +39,6 @@ public class Animal : Entity
     [JsonIgnore]
     public AnimalState? CurrentState { get; set; }
 
-    [Display(AutoGenerateField = false)]
-    [JsonIgnore]
     [NotMapped]
     public AnimalStatus CurrentStatus => CurrentState?.Status ?? AnimalStatus.Unknown;
 

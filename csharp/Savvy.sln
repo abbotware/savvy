@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Savvy.AppHost", "Savvy.AppH
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Savvy.ServiceDefaults", "Savvy.ServiceDefaults\Savvy.ServiceDefaults.csproj", "{E7D2DC43-ABFF-45D5-9DC4-3DA06D3AC27B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "orchestration", "orchestration", "{CF5E963E-A5CD-4DF0-8D2B-C97CE5557617}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "application", "application", "{C0B42C89-E726-446D-8B5E-659C9707BAC6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +40,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7EB44180-E73F-42CB-9600-E61DBD05535E} = {C0B42C89-E726-446D-8B5E-659C9707BAC6}
+		{9B2D257A-3DAD-4320-8985-D4B9AF5B7381} = {C0B42C89-E726-446D-8B5E-659C9707BAC6}
+		{5A6D13BF-E1BF-4BBF-A343-4D9BB57A4119} = {CF5E963E-A5CD-4DF0-8D2B-C97CE5557617}
+		{E7D2DC43-ABFF-45D5-9DC4-3DA06D3AC27B} = {CF5E963E-A5CD-4DF0-8D2B-C97CE5557617}
 	EndGlobalSection
 EndGlobal

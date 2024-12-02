@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Savvy.ZooKeeper.Models.Permission">
+  <Class Name="Savvy.ZooKeeper.Models.Security.Permission">
     <Position X="16.25" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Security\Permission.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Savvy.ZooKeeper.Models.Principal" Collapsed="true">
+  <Class Name="Savvy.ZooKeeper.Models.Security.Principal" Collapsed="true">
     <Position X="6.5" Y="2" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAEAAAABAAQACAAAAAAAAAAAAAACAAA=</HashCode>
@@ -17,10 +17,10 @@
       <Property Name="Employee" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="Savvy.ZooKeeper.Models.PrincipalRole">
+  <Class Name="Savvy.ZooKeeper.Models.Security.PrincipalRole">
     <Position X="10.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAQAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAQAAIAAAAAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Security\PrincipalRole.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -28,36 +28,36 @@
       <Property Name="Role" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="Savvy.ZooKeeper.Models.Role">
+  <Class Name="Savvy.ZooKeeper.Models.Security.Role">
     <Position X="10.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAABAAAAgAAEAAAAAAAAAA=</HashCode>
       <FileName>Security\Role.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Savvy.ZooKeeper.Models.RolePermission">
+  <Class Name="Savvy.ZooKeeper.Models.Security.RolePermission">
     <Position X="13.25" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAEAAAACAAAAAgAAAAAAEAAgQAAAA=</HashCode>
+      <HashCode>AAAAAAIAAAIAAAAAEAAEACAAAAAgAAAAAAEAAgQAAAA=</HashCode>
       <FileName>Security\RolePermission.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Permission" />
       <Property Name="Role" />
+      <Property Name="Permission" />
       <Property Name="Target" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Savvy.ZooKeeper.Models.Entities.Entity" Collapsed="true">
     <Position X="13.25" Y="7.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAQAAAA=</HashCode>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\Entity.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Savvy.ZooKeeper.Models.Entities.Employee" Collapsed="true">
     <Position X="13.25" Y="9.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAQAEAAACAAAAAAAAIAAAAAAAAAAAAAAAAAIAAAAAg=</HashCode>
+      <HashCode>AAAQAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAg=</HashCode>
       <FileName>Entities\Employee.cs</FileName>
     </TypeIdentifier>
   </Class>

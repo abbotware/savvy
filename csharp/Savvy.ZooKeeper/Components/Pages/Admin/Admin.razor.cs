@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Savvy.ZooKeeper.Models;
 using Savvy.ZooKeeper.Models.Data;
 using Savvy.ZooKeeper.Models.Entities;
+using Savvy.ZooKeeper.Models.Security;
 using Savvy.ZooKeeper.Services;
 
 namespace Savvy.ZooKeeper.Components.Pages.Admin
