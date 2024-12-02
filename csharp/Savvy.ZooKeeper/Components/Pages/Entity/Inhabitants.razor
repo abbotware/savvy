@@ -11,9 +11,9 @@
         <GridColumn Field=@nameof(Animal.CurrentStatus) HeaderText="Status" Width="150"></GridColumn>
         <GridColumn Field="Exhibit.Name" HeaderText="Exhibit" Width="150"></GridColumn>
         <GridColumn Field=@nameof(Animal.BirthDate) HeaderText="Birth" Width="150"></GridColumn>
-        <GridColumn Field=@nameof(Animal.PreferredHabitat) HeaderText="Birth" Width="150"></GridColumn>
-        <GridColumn Field=@nameof(Animal.ActualDiet) HeaderText="Birth" Width="150"></GridColumn>
-        <GridColumn Field=@nameof(Animal.ActualFeedingTimes) HeaderText="Birth" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(Animal.PreferredHabitat) HeaderText="Preferred Habitat" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(Animal.ActualDiet) HeaderText="Diet" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(Animal.ActualFeedingTimes) HeaderText="Feeding Times" Width="150"></GridColumn>
     </GridColumns>
     <GridEvents RowSelected="GetSelectedRecords" TValue="Animal"></GridEvents>
 
