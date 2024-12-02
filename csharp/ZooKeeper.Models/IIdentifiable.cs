@@ -6,7 +6,7 @@
     public interface IIdentifiable<TKey>
     {
         /// <summary>
-        /// Gets the identity
+        /// Gets the Id
         /// </summary>
         TKey Id { get; }
     }

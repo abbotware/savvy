@@ -5,7 +5,7 @@
 
 @rendermode InteractiveServer
 
-<SfGrid DataSource="@Rows" AllowPaging="true" AllowFiltering="true" AllowGrouping="true" AllowMultiSorting="true" Toolbar="@(new string[] {"Add", "Edit" ,"Delete","Update","Cancel" })">
+<SfGrid DataSource="@Rows" AllowPaging="true" AllowFiltering="true" AllowGrouping="true" AllowMultiSorting="true" AllowResizing="true" Toolbar="@(new string[] {"Add", "Edit" ,"Delete","Update","Cancel" })">
     <GridPageSettings PageSize="100"></GridPageSettings>
     <GridGroupSettings></GridGroupSettings>
     <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
@@ -17,7 +17,7 @@
             }
 
             <SfDataForm ID="GridForm" Model="@row" OnValidSubmit="OnFormValidSubmit">
-                <FormButtons ></FormButtons>
+                <FormButtons></FormButtons>
                 <FormValidator>
                     <DataAnnotationsValidator></DataAnnotationsValidator>
                 </FormValidator>

@@ -39,6 +39,11 @@ public class Animal : Entity
     [JsonIgnore]
     public AnimalState? CurrentState { get; set; }
 
+    [Display(AutoGenerateField = false)]
+    [JsonIgnore]
+    [NotMapped]
+    public AnimalStatus CurrentStatus => CurrentState?.Status ?? AnimalStatus.Unknown;
+
     [ForeignKey(nameof(CurrentState))]
     public long? AnimalStateId { get; set; }
 

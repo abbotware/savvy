@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Components;
 using Savvy.ZooKeeper.Models;
 using Savvy.ZooKeeper.Models.Data;
 
-namespace Savvy.ZooKeeper.Components.Pages
+namespace Savvy.ZooKeeper.Components.Pages.Admin
 {
     public partial class Database
     {

@@ -29,8 +29,8 @@ public static class SeedDatabase
         modelContext.Principals.Add(p2);
         modelContext.SaveChanges();
 
-        var e1 = new Employee() { Name = "Bob", CreatedBy = system, UpdatedBy = system, Principal = p1 };
-        var e2 = new Employee() { Name = "Alice", CreatedBy = system, UpdatedBy = system, Principal = p2 };
+        var e1 = new Employee() { Name = "Bob", LastName = "Barker", Email = "price.is.right@gmail.com", Phone = "202-867-5309", CreatedBy = system, UpdatedBy = system, Principal = p1 };
+        var e2 = new Employee() { Name = "Alice", LastName = "Liddell", Email = "alice@wonderland.com", Phone = "123-456-7890", CreatedBy = system, UpdatedBy = system, Principal = p2 };
         modelContext.Employees.Add(e1);
         modelContext.Employees.Add(e2);
         modelContext.SaveChanges();
@@ -41,7 +41,7 @@ public static class SeedDatabase
         modelContext.Roles.Add(role2);
         modelContext.SaveChanges();
 
-        var permission1 = new Permission() { Name = "View", CreatedBy = system };
+        var permission1 = new Permission() { Name = "View PII", CreatedBy = system };
         var permission2 = new Permission() { Name = "Update", CreatedBy = system };
         modelContext.Permissions.Add(permission1);
         modelContext.Permissions.Add(permission2);
@@ -102,8 +102,8 @@ public static class SeedDatabase
             var h = habitats[r.Type];
             m.Name = r.Name;
             m.Habitat = h;
-            m.CreatedById = system.Id;
-            m.UpdatedById = system.Id;
+            m.CreatedById = Random.Shared.NextInt64(2, 4);
+            m.UpdatedById = m.CreatedById;
         });
 
         var exhibits = modelContext.Exhibits.ToDictionary(x => x.Habitat.Name, x => x, StringComparer.InvariantCultureIgnoreCase);
@@ -127,10 +127,10 @@ public static class SeedDatabase
             m.EnteredCaptivitiy = new DateTimeOffset(2020, 1, 1, 1, 1, 1, TimeSpan.Zero);
             m.Birth = DateTimeOffset.Now.AddDays(r.Age * -365);
 
-            m.CreatedById = system.Id;
-            m.UpdatedById = system.Id;
+            m.CreatedById = Random.Shared.NextInt64(2, 4);
+            m.UpdatedById = m.CreatedById;
 
-            var s = new AnimalState { Status = r.Status, CreatedById = system.Id, Animal = m };
+            var s = new AnimalState { Status = r.Status, CreatedById = Random.Shared.NextInt64(2, 4), Animal = m };
             modelContext.AnimalStates.Add(s);
         });
 
@@ -143,7 +143,7 @@ public static class SeedDatabase
         foreach (var a in modelContext.Animals.ToList())
         {
             var d1 = DateTimeOffset.Now.AddDays(-1);
-            var s1 = new AnimalState {  Effective = d1, Status = AnimalStatus.Healthy, CreatedById = Random.Shared.NextInt64(2, 4), Animal = a };
+            var s1 = new AnimalState { Effective = d1, Status = AnimalStatus.Healthy, CreatedById = Random.Shared.NextInt64(2, 4), Animal = a };
             modelContext.AnimalStates.Add(s1);
 
             var d2 = DateTimeOffset.Now.AddDays(-2);
@@ -158,10 +158,10 @@ public static class SeedDatabase
 
         var added1 = modelContext.Notes.Add(new Note { Description = "note attached to employee", CreatedById = 2, UpdatedById = 2 });
         modelContext.SaveChanges();
-        modelContext.NoteEntities.Add(new NoteEntity { NoteId = added1.Entity.Id, UserEntityId = Random.Shared.NextInt64(2, 4), });
+        modelContext.NoteEntities.Add(new NoteEntity { NoteId = added1.Entity.Id, UserEntityId = modelContext.Employees.First().Id, });
         modelContext.SaveChanges();
 
-        var added2 = modelContext.Notes.Add(new Note { Description = "note attached to employee and exhibit", CreatedById = 2, UpdatedById = 2 });
+        var added2 = modelContext.Notes.Add(new Note { Description = "note attached to employee and exhibit", CreatedById = 3, UpdatedById = 3 });
         modelContext.SaveChanges();
         var ne1 = new NoteEntity { NoteId = added2.Entity.Id, UserEntityId = modelContext.Employees.First().Id, };
         modelContext.NoteEntities.Add(ne1);
@@ -175,6 +175,13 @@ public static class SeedDatabase
         modelContext.NoteEntities.Add(new NoteEntity { NoteId = added3.Entity.Id, UserEntityId = modelContext.Employees.Skip(1).First().Id });
         modelContext.NoteEntities.Add(new NoteEntity { NoteId = added3.Entity.Id, UserEntityId = modelContext.Exhibits.Skip(1).First().Id, });
         modelContext.NoteEntities.Add(new NoteEntity { NoteId = added3.Entity.Id, UserEntityId = modelContext.Animals.Skip(1).First().Id, });
+        modelContext.SaveChanges();
+
+        var added4 = modelContext.Notes.Add(new Note { Description = "note attached to multiple exhibits", CreatedById = 2, UpdatedById = 2 });
+        modelContext.SaveChanges();
+        modelContext.NoteEntities.Add(new NoteEntity { NoteId = added4.Entity.Id, UserEntityId = modelContext.Exhibits.First().Id });
+        modelContext.NoteEntities.Add(new NoteEntity { NoteId = added4.Entity.Id, UserEntityId = modelContext.Exhibits.Skip(1).First().Id, });
+        modelContext.NoteEntities.Add(new NoteEntity { NoteId = added4.Entity.Id, UserEntityId = modelContext.Exhibits.Skip(2).First().Id, });
         modelContext.SaveChanges();
 
         async Task LoadTable<TModel, TRow>(ModelContext context, FileInfo f, Action<TModel, TRow> callback)

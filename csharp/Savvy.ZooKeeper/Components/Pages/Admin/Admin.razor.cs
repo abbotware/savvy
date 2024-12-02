@@ -5,7 +5,7 @@ using Savvy.ZooKeeper.Models.Data;
 using Savvy.ZooKeeper.Models.Entities;
 using Savvy.ZooKeeper.Services;
 
-namespace Savvy.ZooKeeper.Components.Pages
+namespace Savvy.ZooKeeper.Components.Pages.Admin
 {
     public partial class Admin
     {
@@ -23,22 +23,43 @@ namespace Savvy.ZooKeeper.Components.Pages
             UserId = UserSession.UserId;
         }
 
-
         [Inject]
         private IWebHostEnvironment webHostEnvironment { get; set; } = null!;
 
         public IReadOnlyList<Principal> Principals => ModelContext.Principals.ToList();
 
-        public IReadOnlyList<Role> Roles => ModelContext.Roles.Include(x => x.Principals).Include(x=> x.PrincipalRoles).ToList();
+        public IReadOnlyList<Role> Roles => ModelContext.Roles.Include(x => x.Principals).Include(x => x.PrincipalRoles).ToList();
 
         public IReadOnlyList<Permission> Permissions => ModelContext.Permissions.Include(x => x.Roles).Include(x => x.RolePermissions).ToList();
-        
-        public IReadOnlyList<Employee> Employees => ModelContext.Employees.ToList();
+
+        public IReadOnlyList<Employee> Employees => MaskEmployees();
 
         private Task OnChangeUserId()
         {
             UserSession.UserId = UserId;
+            StateHasChanged();
             return Task.CompletedTask;
+        }
+
+        public IReadOnlyList<Employee> MaskEmployees()
+        {
+            if (UserSession.IsAdmin)
+            {
+                return ModelContext.Employees.ToList();
+            }
+            else
+            {
+                var masked = ModelContext.Employees.ToList();
+                foreach (var r in masked)
+                {
+                    r.Name = r.Name.First() + "***";
+                    r.LastName = r.LastName?.First() + "***";
+                    r.Email = "***";
+                    r.Phone = "***";
+                }
+
+                return masked;
+            }
         }
     }
 }

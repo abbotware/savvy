@@ -11,7 +11,7 @@
             }
 
             <SfDataForm ID="GridForm" Model="@row" OnValidSubmit="OnFormValidSubmit">
-                <FormButtons ></FormButtons>
+                <FormButtons></FormButtons>
                 <FormValidator>
                     <DataAnnotationsValidator></DataAnnotationsValidator>
                 </FormValidator>
@@ -26,7 +26,7 @@
         <DetailTemplate>
             @{
                 var row = (Exhibit)context;
-                <SfGrid DataSource="@row.Animals">
+                <SfGrid DataSource="@row.Animals" AllowResizing="true">
                 </SfGrid>
             }
         </DetailTemplate>
@@ -36,6 +36,24 @@
         <GridColumn Field="Habitat.Name" HeaderText="Type" Width="150"></GridColumn>
         <GridColumn Field="Animals.Count" HeaderText="Residents" Width="150"></GridColumn>
     </GridColumns>
+    <GridEvents RowSelected="GetSelectedRecords" TValue="Exhibit"></GridEvents>
 </SfGrid>
 
-
+<SfTab ID="Tab">
+    <TabItems>
+        <TabItem>
+            <ChildContent>
+                <TabHeader Text="Notes"></TabHeader>
+            </ChildContent>
+            <ContentTemplate>
+                <SfGrid DataSource="@Notes">
+                    <GridColumns>
+                        <GridColumn Field=@nameof(Note.Created) HeaderText="Created" Width="150"></GridColumn>
+                        <GridColumn Field=@nameof(Note.Description) HeaderText="Notes" Width="150"></GridColumn>
+                        <GridColumn Field="CreatedBy.Name" HeaderText="CreatedBy" Width="150"></GridColumn>
+                    </GridColumns>
+                </SfGrid>
+            </ContentTemplate>
+        </TabItem>
+    </TabItems>
+</SfTab>

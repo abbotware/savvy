@@ -1,5 +1,6 @@
 ﻿namespace Savvy.ZooKeeper.Models.Entities;
 
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,7 @@ public class Note : Entity
     [JsonIgnore]
     public ICollection<NoteEntity> NoteOf { get; } = [];
 
+    [Display(AutoGenerateField = false)]
     [NotMapped]
-    public ICollection<long> Entities => NoteOf.Select(x => x.UserEntityId).ToArray();
+    public IReadOnlyList<long> Entities => NoteOf.Select(x => x.UserEntityId).ToArray();
 }

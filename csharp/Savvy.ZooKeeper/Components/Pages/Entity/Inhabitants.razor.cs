@@ -1,12 +1,10 @@
-using System.Xml;
-using Microsoft.EntityFrameworkCore;
-using Savvy.ZooKeeper.Models;
-using Savvy.ZooKeeper.Models.Entities;
-using Syncfusion.Blazor.Grids;
-
-namespace Savvy.ZooKeeper.Components.Pages
+namespace Savvy.ZooKeeper.Components.Pages.Entity
 {
-    public partial class Animals
+    using Microsoft.EntityFrameworkCore;
+    using Savvy.ZooKeeper.Models;
+    using Savvy.ZooKeeper.Models.Entities;
+
+    public partial class Inhabitants
     {
         IReadOnlyList<Note> Notes { get; set; } = Array.Empty<Note>();
 

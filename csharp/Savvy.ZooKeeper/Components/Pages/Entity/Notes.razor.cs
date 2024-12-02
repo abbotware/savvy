@@ -1,11 +1,11 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.EntityFrameworkCore;
-using Savvy.ZooKeeper.Models;
-using Savvy.ZooKeeper.Models.Entities;
-using Savvy.ZooKeeper.Services;
-
-namespace Savvy.ZooKeeper.Components.Pages
+namespace Savvy.ZooKeeper.Components.Pages.Entity
 {
+    using Microsoft.AspNetCore.Components;
+    using Microsoft.EntityFrameworkCore;
+    using Savvy.ZooKeeper.Models;
+    using Savvy.ZooKeeper.Models.Entities;
+    using Savvy.ZooKeeper.Services;
+
     public partial class Notes
     {
         [Inject]

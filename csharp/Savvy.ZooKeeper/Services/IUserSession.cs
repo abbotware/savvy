@@ -6,6 +6,8 @@
 
         bool IsAdmin { get; }
 
+        bool ViewPII { get; }
+
         string? Name { get; }
     }
 }
