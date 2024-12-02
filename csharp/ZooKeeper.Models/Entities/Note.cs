@@ -15,4 +15,7 @@ public class Note : Entity
     [DeleteBehavior(DeleteBehavior.NoAction)]
     [JsonIgnore]
     public ICollection<NoteEntity> NoteOf { get; } = [];
+
+    [NotMapped]
+    public ICollection<long> Entities => NoteOf.Select(x => x.UserEntityId).ToArray();
 }

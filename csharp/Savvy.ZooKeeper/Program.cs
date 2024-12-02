@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.OpenApi;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Scalar.AspNetCore;
+using Savvy.ZooKeeper.Services;
 
 namespace Savvy.ZooKeeper;
 
@@ -27,6 +28,8 @@ public class Program
         builder.Services.AddDbContext<ModelContext>(o =>o.UseSqlServer("name=Database"));
         builder.Services.AddOpenApi();
         builder.Services.AddSyncfusionBlazor();
+
+        builder.Services.AddSingleton<IUserSession, UserSession>();
 
         Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzU5NTc0MUAzMjM3MmUzMDJlMzBPc1VJV2ZxNDJPNndTRDkvc0ZGQUhORUVHZk1wU0x4NXlleWV0QlNsejlBPQ==");
 

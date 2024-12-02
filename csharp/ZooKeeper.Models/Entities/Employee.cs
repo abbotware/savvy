@@ -13,16 +13,20 @@ public class Employee : Entity
         EntityType = EntityType.Employee;
     }
 
-    [StringLength(100)] 
+    [StringLength(100)]
+    [Display(Order = 2)]
     public string? LastName { get; set; } = null!;
 
     [StringLength(100)]
+    [Display(Order = 3)]
     public string? Email { get; set; } = null!;
 
     [StringLength(25)]
+    [Display(Order = 4)]
     public string? Phone { get; set; } = null!;
 
     [DeleteBehavior(DeleteBehavior.NoAction)]
     [JsonIgnore]
+    [Display(AutoGenerateField = false)]
     public Principal Principal { get; set; } = null!;
 }

@@ -4,6 +4,7 @@
     using Microsoft.EntityFrameworkCore;
     using Savvy.ZooKeeper.Models;
     using Savvy.ZooKeeper.Models.Entities;
+    using Savvy.ZooKeeper.Services;
 
     public record class CreateAnimal(string Name, long AnimalTypeId, string? Diet, string? FeedingTimes);
 
@@ -11,11 +12,14 @@
     [Route("graphql")]
     public class GraphQLController : ControllerBase
     {
-        protected readonly ModelContext database;
+        protected readonly ModelContext Database;
 
-        public GraphQLController(ModelContext modelContext)
+        protected readonly IUserSession UserSession;
+
+        public GraphQLController(ModelContext modelContext, IUserSession userSession)
         {
-            database = modelContext;
+            Database = modelContext;
+            UserSession = userSession;
         }
 
         [HttpPost]
@@ -27,13 +31,13 @@
             animal.Id = 0;
             animal.Name = create.Name;
             animal.AnimalTypeId = create.AnimalTypeId;
-            animal.CreatedById = 2;
-            animal.UpdatedById = 2;
+            animal.CreatedById = UserSession.UserId;
+            animal.UpdatedById = UserSession.UserId;
             animal.Diet = create.Diet;
             animal.FeedingTimes = create.FeedingTimes;
-            var result = database.Animals.Add(animal);
-            database.SaveChanges();
-            var created = database.Animals.Include(x => x.AnimalType).Single(x => x.Id == result.Entity.Id);
+            var result = Database.Animals.Add(animal);
+            Database.SaveChanges();
+            var created = Database.Animals.Include(x => x.AnimalType).Single(x => x.Id == result.Entity.Id);
             return Created("get", created);
         }
     }

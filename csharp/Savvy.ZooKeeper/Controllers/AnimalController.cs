@@ -4,13 +4,14 @@
     using Microsoft.EntityFrameworkCore;
     using Savvy.ZooKeeper.Models;
     using Savvy.ZooKeeper.Models.Entities;
+    using Savvy.ZooKeeper.Services;
 
     [ApiController]
     [Route("animal")]
     public class AnimalController : BaseCrudController<Animal>
     {
-        public AnimalController(ModelContext modelContext) 
-            : base(modelContext)
+        public AnimalController(ModelContext modelContext, IUserSession userSession) 
+            : base(modelContext, userSession)
         {
         }
 

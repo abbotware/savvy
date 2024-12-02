@@ -22,8 +22,8 @@
                     <GridTemplates>
                         <DetailTemplate>
                             @{
-                                var role = (Role)context;
-                                <SfGrid DataSource="@role.PrincipalRoles">
+                                var row = (Role)context;
+                                <SfGrid DataSource="@row.PrincipalRoles">
                                 </SfGrid>
                             }
                         </DetailTemplate>
@@ -38,15 +38,39 @@
                 <TabHeader Text="Permissions"></TabHeader>
             </ChildContent>
             <ContentTemplate>
-                <SfGrid DataSource="@Permissions"></SfGrid>
+                <SfGrid DataSource="@Permissions">
+                    <GridTemplates>
+                        <DetailTemplate>
+                            @{
+                                var row = (Permission)context;
+                                <SfGrid DataSource="@row.RolePermissions">
+                                </SfGrid>
+                            }
+                        </DetailTemplate>
+                    </GridTemplates>
+
+                </SfGrid>
             </ContentTemplate>
         </TabItem>
+
+
         <TabItem>
             <ChildContent>
-                <TabHeader Text="Database"></TabHeader>
+                <TabHeader Text="Employees"></TabHeader>
             </ChildContent>
             <ContentTemplate>
-                <SfButton OnClick=@OnReseedDatabase>Reseed Database</SfButton>
+                <SfGrid DataSource="@Employees">
+                </SfGrid>
+            </ContentTemplate>
+        </TabItem>
+
+        <TabItem>
+            <ChildContent>
+                <TabHeader Text="User Session"></TabHeader>
+            </ChildContent>
+            <ContentTemplate>
+                <SfNumericTextBox @bind-Value=@UserId></SfNumericTextBox>
+                <SfButton OnClick=@OnChangeUserId>Set User</SfButton>
             </ContentTemplate>
         </TabItem>
     </TabItems>

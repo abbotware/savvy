@@ -17,11 +17,15 @@ public class ModelContext(DbContextOptions<ModelContext> options)
 
     public DbSet<Note> Notes => Set<Note>();
 
+    public DbSet<NoteEntity> NoteEntities => Set<NoteEntity>();
+
     public DbSet<Employee> Employees => Set<Employee>();
 
     public DbSet<Principal> Principals => Set<Principal>();
 
     public DbSet<Role> Roles => Set<Role>();
+
+    public DbSet<Entity> Entities => Set<Entity>();
 
     public DbSet<Permission> Permissions => Set<Permission>();
 

@@ -1,0 +1,14 @@
+﻿@page "/notes"
+@inherits BaseGrid<Note>
+@rendermode InteractiveServer
+
+<SfGrid DataSource="@Rows" AllowPaging="true">
+
+    <GridColumns>
+        <GridColumn Field=@nameof(Note.Description) HeaderText="Note" Width="150"></GridColumn>
+        <GridColumn Field="CreatedBy.Name" HeaderText="Created By" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(Note.Created) HeaderText="Created At" Width="150"></GridColumn>
+    </GridColumns>
+</SfGrid>
+
+

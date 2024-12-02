@@ -2,18 +2,19 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using Savvy.ZooKeeper.Models;
+    using Savvy.ZooKeeper.Services;
 
     public class BaseCrudController<T> : ControllerBase
         where T : class, IIdentifiable<long>
     {
-        protected readonly ModelContext database;
+        protected readonly ModelContext Database;
 
-        protected virtual IQueryable<T> OnQuery(ModelContext context) => context.Set<T>().AsQueryable();
+        protected readonly IUserSession UserSession;
 
-
-        public BaseCrudController(ModelContext modelContext)
+        public BaseCrudController(ModelContext modelContext, IUserSession userSession)
         {
-            database = modelContext;
+            Database = modelContext;
+            UserSession = userSession;
         }
 
         [HttpGet]
@@ -21,7 +22,7 @@
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public ActionResult<IEnumerable<T>> Get()
         {
-            return Ok(OnQuery(database));
+            return Ok(OnQuery(Database));
         }
 
         [HttpGet("{id}")]
@@ -30,7 +31,14 @@
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public ActionResult<T> Get(int id)
         {
-            return Ok(OnQuery(database).SingleOrDefault( x=> x.Id == id));
+            var found = OnQuery(Database).SingleOrDefault(x => x.Id == id);
+
+            if (found == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(found);
         }
 
         [HttpDelete("{id}")]
@@ -39,17 +47,19 @@
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public IActionResult Delete(int id)
         {
-            var found = database.Set<T>().SingleOrDefault(x => x.Id == id);
+            var found = Database.Set<T>().SingleOrDefault(x => x.Id == id);
 
             if (found == null)
             {
                 return NotFound();
             }
 
-            database.Remove(found);
-            database.SaveChanges();
+            Database.Remove(found);
+            Database.SaveChanges();
 
             return Ok();
         }
+
+        protected virtual IQueryable<T> OnQuery(ModelContext context) => context.Set<T>().AsQueryable();
     }
 }

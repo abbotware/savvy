@@ -6,7 +6,7 @@ namespace Savvy.ZooKeeper.Components.Pages
 {
     public partial class Database
     {
-        static SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
+        private static readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
 
         [Inject]
         private ModelContext ModelContext { get; set; } = null!;

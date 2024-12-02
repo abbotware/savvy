@@ -15,4 +15,13 @@ public class Role : NamedRecord
     [Display(AutoGenerateField = false)]
     [JsonIgnore]
     public ICollection<PrincipalRole> PrincipalRoles { get; } = [];
+
+    [ForeignKey(nameof(RolePermissions))]
+    [Display(AutoGenerateField = false)]
+    [JsonIgnore]
+    public ICollection<Permission> Permissions { get; } = [];
+
+    [Display(AutoGenerateField = false)]
+    [JsonIgnore]
+    public ICollection<RolePermission> RolePermissions { get; } = [];
 }
